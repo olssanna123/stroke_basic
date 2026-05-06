@@ -1,10 +1,10 @@
-from simulation.pipeline import run_single_iteration
+#from simulation.pipeline import run_single_iteration
 
 def run_simulation(config, data):
-    results = []
+   # results = []
 
-    for i in range(config.n_iterations):
-        result = run_single_iteration(config, data)
-        results.append(result)
+#    for i in range(config.n_iterations):
+ #       result = run_single_iteration(config, data)
+  #      results.append(result)
 
-    return results
+    return 
