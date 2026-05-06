@@ -1,0 +1,115 @@
+# ----------------------
+# Virtual environments
+# ----------------------
+venv/
+.env/
+.venv/
+env/
+
+# ----------------------
+# Python cache
+# ----------------------
+__pycache__/
+*.py[cod]
+*$py.class
+
+# ----------------------
+# Distribution / packaging
+# ----------------------
+build/
+dist/
+*.egg-info/
+
+# ----------------------
+# Installer logs
+# ----------------------
+pip-log.txt
+pip-delete-this-directory.txt
+
+# ----------------------
+# Unit test / coverage
+# ----------------------
+htmlcov/
+.coverage
+.coverage.*
+.cache
+nosetests.xml
+coverage.xml
+*.cover
+*.py,cover
+
+# ----------------------
+# Jupyter
+# ----------------------
+.ipynb_checkpoints/
+
+# ----------------------
+# IDEs
+# ----------------------
+.vscode/
+.idea/
+
+# ----------------------
+# Logs
+# ----------------------
+*.log
+
+# ----------------------
+# Databases
+# ----------------------
+*.sqlite
+*.sqlite3
+
+# ----------------------
+# Environment variables 
+# ----------------------
+.env
+.env.*
+
+# ----------------------
+# Flask
+# ----------------------
+instance/
+
+# ----------------------
+# Generated data (pandas)
+# ----------------------
+*.csv
+*.parquet
+*.feather
+
+# ----------------------
+# Geo data 
+# ----------------------
+*.geojson
+*.shp
+*.dbf
+*.shx
+
+# ----------------------
+# Plots / figures
+# ----------------------
+*.png
+*.jpg
+*.jpeg
+*.svg
+*.pdf
+*.html
+
+# ----------------------
+# Output folders
+# ----------------------
+results/
+outputs/
+
+# ----------------------
+# OS files
+# ----------------------
+.DS_Store
+Thumbs.db
+
+# ----------------------
+# Misc
+# ----------------------
+*.bak
+*.swp
