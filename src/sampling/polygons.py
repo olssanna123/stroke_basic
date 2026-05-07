@@ -24,6 +24,4 @@ def extract_polygon_coordinates(municipality_name):
     for poly in polygons:
         coords_list.append(list(poly.exterior.coords))
 
-    print(coords_list)
-
-    return 
+    return coords_list
