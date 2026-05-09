@@ -1,9 +1,13 @@
 import geopandas as gpd
 from shapely import polygons
+from pathlib import Path
+import geopandas as gpd
 
 def extract_polygon_coordinates(municipality_name):
     # Load shapefile
-    gdf = gpd.read_file("src/data/Kommuner.shp")
+    BASE_DIR = Path(__file__).resolve().parent.parent
+    shapefile = BASE_DIR / "data" / "Kommuner.shp"
+    gdf = gpd.read_file(shapefile)
     
     # Sweden uses SWEREF 99, globally usually uses WGS84, convert to WGS84 (lat/lon)
     gdf = gdf.to_crs(epsg=4326)
@@ -25,3 +29,7 @@ def extract_polygon_coordinates(municipality_name):
         coords_list.append(list(poly.exterior.coords))
 
     return coords_list
+
+
+
+
