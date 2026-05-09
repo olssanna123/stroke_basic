@@ -4,8 +4,9 @@ from sampling.points import get_origin
 
 def main():
     config = Config()          # Alla regler här
-    kommungrans = extract_polygon_coordinates("Ale")
-    origin = get_origin(kommungrans[0])
+    kommungrans = extract_polygon_coordinates("Öckerö")
+    print("Kommungräns:", len(kommungrans), "coordinates")
+    origin = get_origin(kommungrans)
     print("Origin:", origin)
 #    results = run_simulation(config, data)
 #    print("Klar:", len(results))

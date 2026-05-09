@@ -3,7 +3,7 @@ from shapely.geometry import Point
 from shapely.geometry import Polygon
 
 def coords_to_polygon(coords):
-
+    print(f"Converting {len(coords)} coordinates to polygon.")
     if len(coords) < 3:
         raise ValueError("At least three coordinates are needed to form a polygon.")
 
