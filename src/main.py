@@ -1,12 +1,11 @@
 from config import Config
 from utils.initiate_sampling_array import initiate_sampling_array
-from sampling.pipeline import sample_location
+from simulation.pipeline import run_single_iteration
 
 def main():
     config = Config()          # Alla regler här
     array = initiate_sampling_array()
-    point = sample_location(array)
-    print(point)
+    run_single_iteration(config, array)
 #    results = run_simulation(config, data)
 #    print("Klar:", len(results))
 

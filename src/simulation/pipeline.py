@@ -4,22 +4,13 @@ from sampling.pipeline import sample_location
 #from simulation.metrics import compute_metrics
 
 def run_single_iteration(config, array):
-
   # 1. Slumpa plats
-#  point = sample_location(array)
-#  print(point)
+  point = sample_location(array)
+  print(point)
 
   # 2. Triage (här sker beslutet från flödesschemat)
-  # routing = triage_patient(point, data, config)
-
   # 3. Simulera om trombektomi identifieras korrekt
-  # detected = simulate_detection(
-  #     is_true_case=True,
-  #    sensitivity=config.sensitivity,
-  #     specificity=config.specificity
-  # )
-
   # 4. Beräkna tid
-  # metrics = compute_metrics(point, routing, config, detected)
-
-    return 
+  # 5. Spara resultat
+ 
+  return 
