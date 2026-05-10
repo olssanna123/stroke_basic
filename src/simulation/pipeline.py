@@ -1,7 +1,4 @@
 from sampling.pipeline import sample_location
-#from routing.triage import triage_patient
-#from simulation.outcome import simulate_detection
-#from simulation.metrics import compute_metrics
 
 def run_single_iteration(config, array):
   # 1. Slumpa plats
