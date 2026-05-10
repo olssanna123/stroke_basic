@@ -1,13 +1,12 @@
 from config import Config
-from sampling.polygons import extract_polygon_coordinates
-from sampling.points import get_origin
+from utils.initiate_sampling_array import initiate_sampling_array
+from sampling.pipeline import sample_location
 
 def main():
     config = Config()          # Alla regler här
-    kommungrans = extract_polygon_coordinates("Öckerö")
-    print("Kommungräns:", len(kommungrans), "coordinates")
-    origin = get_origin(kommungrans)
-    print("Origin:", origin)
+    array = initiate_sampling_array()
+    mun = sample_location(array)
+    print(mun)
 #    results = run_simulation(config, data)
 #    print("Klar:", len(results))
 

@@ -14,7 +14,7 @@ def coords_to_polygon(coords):
     return Polygon(coords)
 
 # Generate a random point within polygon and return coordinates
-def get_origin(borders):
+def get_point(borders):
     poly = coords_to_polygon(borders)
     min_x, min_y, max_x, max_y = poly.bounds
     while (True):
