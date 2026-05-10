@@ -29,12 +29,9 @@ def extract_polygon_coordinates(municipality_name):
     for poly in polygons:
         coords_list.append(list(poly.exterior.coords))
 
-    print(f"Found {len(coords_list)} polygon(s) for municipality '{municipality_name}'.")
-
-    # Sample one polygon if there are multiple 
+        # Sample one polygon if there are multiple 
     index = model(len(coords_list))
     sample = coords_list[index]
-    print(f"Sampled polygon index: {index}, number of coordinates: {len(sample)}")
     
     return sample
 

@@ -5,8 +5,8 @@ from sampling.pipeline import sample_location
 def main():
     config = Config()          # Alla regler här
     array = initiate_sampling_array()
-    mun = sample_location(array)
-    print(mun)
+    point = sample_location(array)
+    print(point)
 #    results = run_simulation(config, data)
 #    print("Klar:", len(results))
 
