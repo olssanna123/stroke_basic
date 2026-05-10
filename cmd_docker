@@ -1,0 +1,6 @@
+curl "http://localhost:5000/route/v1/driving/11.9746,57.7089;12.0576,57.7210?overview=false"
+
+docker run -t -i -p 5000:5000 `
+  -v "C:\Users\olssanna\Desktop\stroke_basic\osrm:/data" `
+  osrm/osrm-backend `
+  osrm-routed /data/sweden.osrm
