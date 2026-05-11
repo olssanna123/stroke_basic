@@ -7,10 +7,17 @@ def triage_patient(config, point):
         if hospital.name == "Sahlgrenska Universitetssjukhuset":
             su = hospital.coord()
 
+    time_to_sahl = get_time(point, su)
+    print(f"Time to Sahlgrenska Universitetssjukhuset: {time_to_sahl} seconds")
 
     # If the travel time to SU is less than 45 minutes, triage to SU
-    if get_time(point, su) < config.su_threshold_minutes * 60:
-        return "Sahlgrenska Universitetssjukhuset"
+    if time_to_sahl < config.su_threshold_minutes * 60:
+        res = {
+                "Chosen emergency hospital": "Sahlgrenska Universitetssjukhuset",
+                "Option": "Decision rule: Sahlgrenska Universitetssjukhuset is within given time threshold",
+                "Closest emergency hospital": time_to_sahl
+            }
+        return res
     
     
     # Decision rule "Choose the closest emergency hospital. Exception, if another emergency hospital is closer to Sahlgrenska,
