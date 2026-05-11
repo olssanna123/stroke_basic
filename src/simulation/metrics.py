@@ -1,12 +1,8 @@
-def compute_metrics(point, routing, config, detected):
+def loop_none():    
+    pass
 
-    if not detected:
-        return {
-            "status": "missed",
-            "time_loss": routing["travel_times"]["to_su"]
-        }
+def loop_sensitivity():
+    pass
 
-    return {
-        "status": "detected",
-        "chosen": routing["chosen"]
-    }
+def loop_specificity():
+    pass    
