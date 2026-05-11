@@ -4,3 +4,5 @@ docker run -t -i -p 5000:5000 `
   -v "C:\Users\olssanna\Desktop\stroke_basic\osrm:/data" `
   osrm/osrm-backend `
   osrm-routed /data/sweden.osrm
+
+  .\.venv\Scripts\activate    
