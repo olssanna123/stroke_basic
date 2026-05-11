@@ -4,7 +4,7 @@ from dataclasses import dataclass
 class Config:
     n_iterations: int = 1000    # Ange antalet iterationer, n = 100, 1000, eller 10000
 
-    variable: str = "sensitivity"  # Ange vilken variabel som ska variera, "sensitivity","specificity" eller "none"
+    variable: str = "none"  # Ange vilken variabel som ska variera, "sensitivity","specificity" eller "none"
     sensitivity: float = 0.9    # Ange sensitivitet, 1 = 100%, 0.9 = 90%, 0.8 = 80%, 0.5 = 50%
     specificity: float = 0.85   # Ange specificitet, 1 = 100%, 0.9 = 90%, 0.8 = 80%, 0.5 = 50%
 
