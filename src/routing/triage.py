@@ -19,7 +19,39 @@ def triage_patient(config, point):
 
     # Create a list of (hospital, travel_time) tuples
     travel_times = [(hospital, get_time(point, hospital.coord())) for hospital in hospitals]
+   
+     # Sort by travel time
+    travel_times.sort(key=lambda x: x[1])
     print("Travel times to hospitals:", [(h.name, t) for h, t in travel_times])
-    
 
-    return "No suitable hospital found"
+
+    time_to_sahl1 = travel_times[0][1] + get_time(travel_times[0][0].coord(), su)
+    time_to_sahl2 = travel_times[1][1] + get_time(travel_times[1][0].coord(), su)
+
+    print(f"Time to Sahlgrenska via {travel_times[0][0].name}: {time_to_sahl1} seconds")
+    print(f"Time to Sahlgrenska via {travel_times[1][0].name}: {time_to_sahl2} seconds")
+
+    if time_to_sahl2 < time_to_sahl1:
+        if travel_times[1][1] < config.comparison_threshold_minutes * 60:
+            res = {
+                "Chosen emergency hospital": travel_times[1][0],
+                "Option": "Decision rule: Shorter total time to Sahlgrenska and less than 15 min.",
+                "Closest emergency hospital": travel_times[0][0]
+            }
+            return res
+        else:
+            res = {
+                "Chosen emergency hospital": travel_times[0][0],
+                "Option": "Decision rule: Closest emergency hospital.",
+                "Closest emergency hospital": travel_times[0][0]
+            }
+            return res
+    else:
+        res = {
+            "Chosen emergency hospital": travel_times[0][0],
+            "Option": "Decision rule: Closest emergency hospital.",
+            "Closest emergency hospital": travel_times[0][0]
+        }
+
+
+    return res
