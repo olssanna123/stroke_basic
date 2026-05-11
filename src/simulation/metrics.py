@@ -1,34 +1,35 @@
 from routing.travel_time import get_time
 from data.emergency_hospitals import hospitals
 
+def seconds_to_hms(seconds):
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    secs = seconds % 60
+
+    return hours, minutes, secs
+
 def metrics_none(config, point, hospital):  
+    print(hospital)
 
-    for hospital in hospitals:
-        if hospital.name == "Sahlgrenska Universitetssjukhuset":
-            su = hospital.coord()
+    for x in hospitals:
+        if x.name == "Sahlgrenska Universitetssjukhuset":
+            su = x.coord()
 
-    if hospital.name == "Sahlgrenska Universitetssjukhuset":
-        res = {
-                "Saved time": 0
-            }
-        return res
-
-    for h in hospitals:
-        if h.name == hospital.name:
-            hospital_coordinates = h.coord()
+    for y in hospitals:
+        if y.name == hospital.name:
+            hospital_coordinates = y.coord()
 
     time_point_to_hospital = get_time(point, hospital_coordinates)
-    time_point_to_sahl = get_time(point, su)
-    time_hospital_to_sahl = get_time(hospital_coordinates, su)
+    h, m, s = seconds_to_hms(time_point_to_hospital)
+    print(f"Time from point to hospital: {h} hours, {m} minutes, {s} seconds")
 
-    saved_time = (time_point_to_hospital + config.akut_treatment_time*60 + time_hospital_to_sahl) - time_point_to_sahl
-    
-    res = {
-        "Saved time": saved_time    }       
-    return res
+    time_hospital_to_su = get_time(hospital_coordinates, su)
+    h, m, s = seconds_to_hms(time_hospital_to_su)
+    print(f"Time from hospital to Sahlgrenska: {h} hours, {m} minutes, {s} seconds")
 
-def metrics_sensitivity(point, hospital):
-    pass
+    time_point_to_su = get_time(point, su)
+    h, m, s = seconds_to_hms(time_point_to_su)
+    print(f"Time from point to Sahlgrenska: {h} hours, {m} minutes, {s} seconds")
 
-def metrics_specificity(point, hospital):
-    pass    
+
+    return 

@@ -6,4 +6,5 @@ def sample_location(array):
     municipality = draw_sample(array)
     borders = extract_polygon_coordinates(municipality)
     point = get_point(borders)
+    print(f"Sampled location: {point} in municipality: {municipality}")
     return point
