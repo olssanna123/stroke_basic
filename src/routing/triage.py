@@ -48,7 +48,7 @@ def triage_patient(config, point):
     else:
         res = {
             "Chosen emergency hospital": travel_times[0][0].name,
-            "Rule": "losest emergency hospital."
+            "Rule": "Closest emergency hospital."
         }
 
 
