@@ -7,8 +7,14 @@ def main():
     config = Config()          # Alla regler här
     vallgraven = (57.7028, 11.9624)
     stenungsund = (58.0705, 11.8181)
-    triage_result = triage_patient(config, stenungsund)
-    print("Triage result:", triage_result)
+
+    triage_result1= triage_patient(config, vallgraven)
+    print("Triage result vallgraven:", triage_result1)
+    
+    print("\n")
+
+    triage_result2= triage_patient(config, stenungsund)
+    print("Triage result stenungsund:", triage_result2)
 
 #    results = run_simulation(config, data)
 #    print("Klar:", len(results))

@@ -8,14 +8,13 @@ def triage_patient(config, point):
             su = hospital.coord()
 
     time_to_sahl = get_time(point, su)
-    print(f"Time to Sahlgrenska Universitetssjukhuset: {time_to_sahl} seconds")
+
 
     # If the travel time to SU is less than 45 minutes, triage to SU
     if time_to_sahl < config.su_threshold_minutes * 60:
         res = {
                 "Chosen emergency hospital": "Sahlgrenska Universitetssjukhuset",
-                "Option": "Decision rule: Sahlgrenska Universitetssjukhuset is within given time threshold",
-                "Closest emergency hospital": time_to_sahl
+                "Rule": "Sahlgrenska Universitetssjukhuset is within given time threshold"
             }
         return res
     
@@ -29,35 +28,27 @@ def triage_patient(config, point):
    
      # Sort by travel time
     travel_times.sort(key=lambda x: x[1])
-    print("Travel times to hospitals:", [(h.name, t) for h, t in travel_times])
-
 
     time_to_sahl1 = travel_times[0][1] + get_time(travel_times[0][0].coord(), su)
     time_to_sahl2 = travel_times[1][1] + get_time(travel_times[1][0].coord(), su)
 
-    print(f"Time to Sahlgrenska via {travel_times[0][0].name}: {time_to_sahl1} seconds")
-    print(f"Time to Sahlgrenska via {travel_times[1][0].name}: {time_to_sahl2} seconds")
-
     if time_to_sahl2 < time_to_sahl1:
         if travel_times[1][1] < config.comparison_threshold_minutes * 60:
             res = {
-                "Chosen emergency hospital": travel_times[1][0],
-                "Option": "Decision rule: Shorter total time to Sahlgrenska and less than 15 min.",
-                "Closest emergency hospital": travel_times[0][0]
+                "Chosen emergency hospital": travel_times[1][0].name,
+                "Rule": "Shorter total time to Sahlgrenska and less than 15 min."
             }
             return res
         else:
             res = {
-                "Chosen emergency hospital": travel_times[0][0],
-                "Option": "Decision rule: Closest emergency hospital.",
-                "Closest emergency hospital": travel_times[0][0]
+                "Chosen emergency hospital": travel_times[0][0].name,
+                "Rule": "Closest emergency hospital."
             }
             return res
     else:
         res = {
-            "Chosen emergency hospital": travel_times[0][0],
-            "Option": "Decision rule: Closest emergency hospital.",
-            "Closest emergency hospital": travel_times[0][0]
+            "Chosen emergency hospital": travel_times[0][0].name,
+            "Rule": "losest emergency hospital."
         }
 
 
