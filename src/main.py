@@ -6,7 +6,8 @@ from routing.triage import triage_patient
 def main():
     config = Config()          # Alla regler här
     vallgraven = (57.7028, 11.9624)
-    triage_result = triage_patient(config, vallgraven)
+    stenungsund = (58.0705, 11.8181)
+    triage_result = triage_patient(config, stenungsund)
     print("Triage result:", triage_result)
 
 #    results = run_simulation(config, data)
