@@ -5,9 +5,9 @@ from simulation.pipeline import run_single_iteration
 
 def main():
     config = Config()          # Alla regler här
-    array = initiate_sampling_array()  # Skapa en array 
-    run_single_iteration(config, array)
-
+    #array = initiate_sampling_array()  # Skapa en array 
+    #run_single_iteration(config, array)
+    
 #    print("Klar:", len(results))
 
 if __name__ == "__main__":
