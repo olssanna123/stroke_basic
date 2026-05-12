@@ -1,5 +1,6 @@
 from data.emergency_hospitals import hospitals
 from routing.travel_route import route
+from utils.random_generator import model
 
 def seconds_to_hms(seconds):
     hours = seconds // 3600
@@ -26,7 +27,25 @@ def metrics_none(config, point, hospital):
     return 
 
 def metrics_sensitivity(config, point, hospital):   
-    print("Varying sensitivity, keeping specificity constant.")
+
+    sensitivity = model(10)
+
+    match config.sensitivity:
+        case 90:
+            percentage = sensitivity == 10
+        case 80:
+            percentage = sensitivity == 10 or sensitivity == 9
+        case 50:
+            percentage = sensitivity == 10 or sensitivity == 9 or sensitivity == 8 or sensitivity == 7 or sensitivity == 6 
+        case _:
+            print("Unknown percentage!")
+    
+    if hospital.name == "Sahlgrenska Universitetssjukhuset":
+        print("Patient triaged to SU, no saved time.")
+    elif percentage:
+        print("Trombektomi not identified, calculating lost time.")
+    else:
+        print("Trombektomi correctly identified, calculating saved time.")
     return
 
 def metrics_specificity(config, point, hospital):
