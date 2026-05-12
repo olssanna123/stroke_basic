@@ -24,3 +24,11 @@ def metrics_none(config, point, hospital):
     print(f"Time from point to hospital: {h} hours, {m} minutes, {s} seconds")
 
     return 
+
+def metrics_sensitivity(config, point, hospital):   
+    print("Varying sensitivity, keeping specificity constant.")
+    return
+
+def metrics_specificity(config, point, hospital):
+    print("Varying specificity, keeping sensitivity constant.")
+    return
