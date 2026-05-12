@@ -3,7 +3,7 @@ from unittest import case
 
 from sampling.pipeline import sample_location
 from routing.triage import triage_patient
-from simulation.metrics import metrics_none, metrics_sensitivity
+from simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
 
 def run_single_iteration(config, array):
   # 1. Slumpa plats
@@ -20,7 +20,10 @@ def run_single_iteration(config, array):
     case "sensitivity":
       metrics_sensitivity(config, point, res["Chosen emergency hospital"])
     case "specificity":
-      print("Varying specificity, keeping sensitivity constant.")
+      metrics_specificity(config, point, res["Chosen emergency hospital"])
+    case _:
+      print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
+      return  
 
   # 4. Spara resultat
  
