@@ -5,8 +5,8 @@ class Config:
     n_iterations: int = 1000    # Ange antalet iterationer, n = 100, 1000, eller 10000
 
     variable: str = "none"  # Ange vilken variabel som ska variera, "sensitivity","specificity" eller "none"
-    sensitivity: float = 0.9    # Ange sensitivitet, 1 = 100%, 0.9 = 90%, 0.8 = 80%, 0.5 = 50%
-    specificity: float = 0.85   # Ange specificitet, 1 = 100%, 0.9 = 90%, 0.8 = 80%, 0.5 = 50%
+    sensitivity: float = 1    # Ange sensitivitet, 1 = 100%, 0.9 = 90%, 0.8 = 80%, 0.5 = 50%
+    specificity: float = 1   # Ange specificitet, 1 = 100%, 0.9 = 90%, 0.8 = 80%, 0.5 = 50%
 
     su_threshold_minutes: int = 45
     comparison_threshold_minutes: int = 15

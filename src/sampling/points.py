@@ -22,5 +22,5 @@ def get_point(borders):
             break
         else:
             continue
-    point_tuple = (point.x, point.y)
+    point_tuple = (point.y, point.x) # Return as (latitude, longitude) tuple
     return point_tuple

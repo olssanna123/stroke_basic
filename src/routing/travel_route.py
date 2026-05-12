@@ -57,10 +57,17 @@ def plot_route(coords, duration, distance):
 
     return m
 
-origin = (18.0686, 59.3293)   # :contentReference[oaicite:0]{index=0}
-dest = (11.9746, 57.7089)     # :contentReference[oaicite:1]{index=1}
+def route(origin_latlon, dest_latlon):
 
-coords, duration, distance = get_route_info(*origin, *dest)
+    origin_lat, origin_lon = origin_latlon
+    dest_lat, dest_lon = dest_latlon
 
-m = plot_route(coords, duration, distance)
-m.save("route.html")
+    coords, duration, distance = get_route_info(
+        origin_lon, origin_lat,
+        dest_lon, dest_lat
+    )
+
+    m = plot_route(coords, duration, distance)
+    m.save("route.html")
+
+    return duration

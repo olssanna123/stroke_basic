@@ -11,8 +11,9 @@ def run_single_iteration(config, array):
 
   # 2. Triage (här sker beslutet från flödesschemat)
   res = triage_patient(config, point)
-  
-  # 3. Simulera om trombektomi identifieras korrekt
+  print("Triage result:", res)
+
+  # 3. Simulera om trombektomi identifieras korrekt och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
     case "none":
       metrics_none(config, point, res["Chosen emergency hospital"])
@@ -21,7 +22,6 @@ def run_single_iteration(config, array):
     case "specificity":
       print("Varying specificity, keeping sensitivity constant.")
 
-  # 4. Beräkna tid
-  # 5. Spara resultat
+  # 4. Spara resultat
  
   return 
