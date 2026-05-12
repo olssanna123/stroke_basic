@@ -43,11 +43,29 @@ def metrics_sensitivity(config, point, hospital):
     if hospital.name == "Sahlgrenska Universitetssjukhuset":
         print("Patient triaged to SU, no saved time.")
     elif percentage:
-        print("Trombektomi not identified, calculating lost time.")
+        print("Trombektomi not identified, no saved time.")
     else:
         print("Trombektomi correctly identified, calculating saved time.")
     return
 
 def metrics_specificity(config, point, hospital):
-    print("Varying specificity, keeping sensitivity constant.")
+
+    specificity = model(10)
+
+    match config.specificity:
+        case 90:
+            percentage = specificity == 10
+        case 80:
+            percentage = specificity == 10 or specificity == 9
+        case 50:
+            percentage = specificity == 10 or specificity == 9 or specificity == 8 or specificity == 7 or specificity == 6 
+        case _:
+            print("Unknown percentage!")
+
+    if hospital.name == "Sahlgrenska Universitetssjukhuset":
+        print("Patient triaged to SU, no lost time.") 
+    elif percentage:
+        print("Trombektomi falsely identified, calculating lost time.")     
+    else:
+        print("Trombektomi correctly identified, no lost time.")
     return
