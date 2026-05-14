@@ -5,7 +5,9 @@ from simulation.pipeline import run_single_iteration
 
 def main():
     config = Config()          # Alla regler här
-    build_routes()
+    array = initiate_sampling_array()
+    run_single_iteration(config, array)
+
 
 if __name__ == "__main__":
     main()

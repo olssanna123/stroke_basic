@@ -11,6 +11,7 @@ def run_single_iteration(config, array):
 
   # 2. Triage 
   res = triage_patient(config, point)
+  print(res)
   
   # 3. Simulera om trombektomi identifieras korrekt och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
