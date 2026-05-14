@@ -82,3 +82,16 @@ def get_route_time(origin_latlon, dest_latlon):
     )
 
     return duration
+
+def get_all_travel_times(point, emergency_hospital, academic_hospital):
+    time_to_emergency = get_route_time(point, emergency_hospital)
+    time_to_academic = get_route_time(point, academic_hospital)
+    time_emergency_to_academic = get_route_time(emergency_hospital, academic_hospital)
+
+    res = {
+        "time_to_emergency": time_to_emergency, 
+        "time_to_academic": time_to_academic,
+        "time_emergency_to_academic": time_emergency_to_academic
+    } 
+
+    return res

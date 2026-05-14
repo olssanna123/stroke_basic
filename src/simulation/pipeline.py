@@ -9,7 +9,7 @@ def run_single_iteration(config, array):
   # 1. Slumpa plats
   point = sample_location(array)
 
-  # 2. Triage (här sker beslutet från flödesschemat)
+  # 2. Triage 
   res = triage_patient(config, point)
   
   # 3. Simulera om trombektomi identifieras korrekt och beräkna resultatet av det (beroende på vilken variabel som var vald i config)

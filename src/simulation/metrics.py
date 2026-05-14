@@ -1,17 +1,14 @@
 from data.emergency_hospitals import hospitals
-from routing.travel_route import route
+from routing.travel_route import get_all_travel_times, route
 from utils.random_generator import model
 
 def seconds_to_hms(seconds):
     hours = seconds // 3600
     minutes = (seconds % 3600) // 60
     secs = seconds % 60
-
     return hours, minutes, secs
 
 def metrics_none(config, point, hospital):  
-    print(hospital)
-
     for x in hospitals:
         if x.name == "Sahlgrenska Universitetssjukhuset":
             su = x.coord()
@@ -20,11 +17,11 @@ def metrics_none(config, point, hospital):
         if y.name == hospital.name:
             hospital_coordinates = y.coord()
 
+    res = get_all_travel_times(point, su, hospital_coordinates)
 
     return 
 
 def metrics_sensitivity(config, point, hospital):   
-
     sensitivity = model(10)
 
     match config.sensitivity:
@@ -46,7 +43,6 @@ def metrics_sensitivity(config, point, hospital):
     return
 
 def metrics_specificity(config, point, hospital):
-
     specificity = model(10)
 
     match config.specificity:

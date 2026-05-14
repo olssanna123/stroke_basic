@@ -2,14 +2,12 @@ from data.emergency_hospitals import hospitals
 from routing.travel_route import get_route_time
 
 def triage_patient(config, point):
-
     for h in hospitals:
         if h.name == "Sahlgrenska Universitetssjukhuset":
             su = h.coord()
             su_hospital_object = h
 
     time_to_sahl = get_route_time(point, su)
-
 
     # If the travel time to SU is less than 45 minutes, triage to SU
     if time_to_sahl < config.su_threshold_minutes * 60:
@@ -18,7 +16,6 @@ def triage_patient(config, point):
                 "Rule": "Sahlgrenska Universitetssjukhuset is within given time threshold"
             }
         return res
-    
     
     # Decision rule "Choose the closest emergency hospital. Exception, if another emergency hospital is closer to Sahlgrenska,
     # and the time difference between the that hospital and the closest emergency hospital is less than 15 minutes,
@@ -51,6 +48,5 @@ def triage_patient(config, point):
             "Chosen emergency hospital": travel_times[0][0],
             "Rule": "Closest emergency hospital."
         }
-
 
     return res
