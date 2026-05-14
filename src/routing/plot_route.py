@@ -3,23 +3,28 @@ from routing.travel_route import get_route_info
 
 # --------------------------- Plot routes ---------------------------
 
-def add_start_end_markers(m, coords, color, name):
+def add_marker_start(m, coords, color, name):
 
     start = coords[0][::-1]  # [lat, lon]
-    end = coords[-1][::-1]
 
     folium.Marker(
         location=start,
-        popup=f"{name} START",
-        tooltip=f"{name} start",
+        popup=f"{name}",
+        show=True,
+        tooltip=f"{name}",
         icon=folium.Icon(color=color)
     ).add_to(m)
 
+
+def add_marker_end(m, coords, color, name):
+
+    end = coords[-1][::-1]  # [lat, lon]
+
     folium.Marker(
         location=end,
-        popup=f"{name} END",
-        tooltip=f"{name} end",
-        icon=folium.Icon(color=color, icon="flag")
+        popup=f"{name}",
+        tooltip=f"{name}",
+        icon=folium.Icon(color=color)
     ).add_to(m)
 
 def plot_route(m, coords, color="blue", weight=5):
@@ -56,9 +61,9 @@ def plot_three_routes(route1, route2, route3):
     plot_route(m, coords2, color="red")
     plot_route(m, coords3, color="blue")
 
-    add_start_end_markers(m, coords1, "blue", "Point to Emergency Hospital")
-    add_start_end_markers(m, coords2, "red", "Point to Academic Hospital")
-    add_start_end_markers(m, coords3, "green", "Emergency Hospital to Academic Hospital")
+    add_marker_start(m, coords1, "blue", "Fictive patient")
+    add_marker_end(m, coords2, "red", "Academic hospital")
+    add_marker_start(m, coords3, "blue", "Emergency hospital")
 
     m.save("three_routes.html")
 
