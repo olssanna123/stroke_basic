@@ -1,5 +1,5 @@
 from data.emergency_hospitals import hospitals
-from routing.travel_route import get_all_travel_times, route
+from routing.travel_route import get_all_travel_times, plot_all_routes, route
 from utils.random_generator import model
 
 def seconds_to_hms(seconds):
@@ -16,8 +16,6 @@ def metrics_none(config, point, hospital):
     for y in hospitals:
         if y.name == hospital.name:
             hospital_coordinates = y.coord()
-
-    res = get_all_travel_times(point, su, hospital_coordinates)
 
     return 
 
