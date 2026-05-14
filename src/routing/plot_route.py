@@ -36,14 +36,14 @@ def plot_three_routes(route1, route2, route3):
 
     return m
 
-def build_routes():
-    Göteborg_lat, Göteborg_lon = (57.7089, 11.9733)  # Latitude and longitude for Gothenburg
-    Stockholm_lat, Stockholm_lon = (59.3293, 18.0686)  # Latitude and longitude for Stockholm
-    Malmö_lat, Malmö_lon = (55.6050, 13.0038)       # Latitude and longitude for Malmö
+def build_routes(point, emergency_hospital, academic_hospital):
+    point_lat, point_lon = point  # Latitude and longitude for the specified point
+    emergency_hospital_lat, emergency_hospital_lon = emergency_hospital  # Latitude and longitude for the emergency hospital
+    academic_hospital_lat, academic_hospital_lon = academic_hospital  # Latitude and longitude for the academic hospital
 
-    route1 = get_route_info(Göteborg_lon, Göteborg_lat, Stockholm_lon, Stockholm_lat)
-    route2 = get_route_info(Göteborg_lon, Göteborg_lat, Malmö_lon, Malmö_lat)
-    route3 = get_route_info(Stockholm_lon, Stockholm_lat, Malmö_lon, Malmö_lat)
+    route1 = get_route_info(point_lon, point_lat, emergency_hospital_lon, emergency_hospital_lat)
+    route2 = get_route_info(point_lon, point_lat, academic_hospital_lon, academic_hospital_lat)
+    route3 = get_route_info(emergency_hospital_lon, emergency_hospital_lat, academic_hospital_lon, academic_hospital_lat)
 
     plot_three_routes(route1, route2, route3)
 
