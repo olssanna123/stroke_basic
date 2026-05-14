@@ -1,5 +1,4 @@
 from data.emergency_hospitals import hospitals
-from routing.travel_route import get_all_travel_times, plot_all_routes, route
 from utils.random_generator import model
 
 def seconds_to_hms(seconds):
