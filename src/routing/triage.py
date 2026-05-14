@@ -1,14 +1,14 @@
 from data.emergency_hospitals import hospitals
-from routing.travel_route import route
+from routing.travel_route import get_route_time
 
 def triage_patient(config, point):
 
-    for hospital in hospitals:
-        if hospital.name == "Sahlgrenska Universitetssjukhuset":
-            su = hospital.coord()
-            su_hospital_object = hospital
+    for h in hospitals:
+        if h.name == "Sahlgrenska Universitetssjukhuset":
+            su = h.coord()
+            su_hospital_object = h
 
-    time_to_sahl = route(point, su)
+    time_to_sahl = get_route_time(point, su)
 
 
     # If the travel time to SU is less than 45 minutes, triage to SU
@@ -25,13 +25,13 @@ def triage_patient(config, point):
     # the emergency hospital closer to Sahlgrenska is chosen."
 
     # Create a list of (hospital, travel_time) tuples
-    travel_times = [(hospital, route(point, hospital.coord())) for hospital in hospitals]
+    travel_times = [(hospital, get_route_time(point, hospital.coord())) for hospital in hospitals]
    
      # Sort by travel time
     travel_times.sort(key=lambda x: x[1])
 
-    time_to_sahl1 = travel_times[0][1] + route(travel_times[0][0].coord(), su)
-    time_to_sahl2 = travel_times[1][1] + route(travel_times[1][0].coord(), su)
+    time_to_sahl1 = travel_times[0][1] + get_route_time(travel_times[0][0].coord(), su)
+    time_to_sahl2 = travel_times[1][1] + get_route_time(travel_times[1][0].coord(), su)
 
     if time_to_sahl2 < time_to_sahl1:
         if travel_times[1][1] < config.comparison_threshold_minutes * 60:

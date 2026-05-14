@@ -71,3 +71,14 @@ def route(origin_latlon, dest_latlon):
     m.save("route.html")
 
     return duration
+
+def get_route_time(origin_latlon, dest_latlon):
+    origin_lat, origin_lon = origin_latlon
+    dest_lat, dest_lon = dest_latlon
+
+    _, duration, _ = get_route_info(
+        origin_lon, origin_lat,
+        dest_lon, dest_lat
+    )
+
+    return duration

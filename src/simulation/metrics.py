@@ -20,9 +20,6 @@ def metrics_none(config, point, hospital):
         if y.name == hospital.name:
             hospital_coordinates = y.coord()
 
-    time_point_to_hospital = route(point, hospital_coordinates)
-    h, m, s = seconds_to_hms(time_point_to_hospital)
-    print(f"Time from point to hospital: {h} hours, {m} minutes, {s} seconds")
 
     return 
 
