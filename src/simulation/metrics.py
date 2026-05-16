@@ -1,7 +1,7 @@
-from data.emergency_hospitals import hospitals
-from routing.plot_route import build_routes
-from utils.random_generator import model
-from routing.route_time import get_all_route_times
+from src.data.emergency_hospitals import hospitals
+from src.routing.plot_route import build_routes
+from src.utils.random_generator import model
+from src.routing.route_time import get_all_route_times
 
 def seconds_to_hms(seconds):
     hours = seconds // 3600

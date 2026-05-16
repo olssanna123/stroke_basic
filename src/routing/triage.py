@@ -1,5 +1,5 @@
-from data.emergency_hospitals import hospitals
-from routing.route_time import get_route_time
+from src.data.emergency_hospitals import hospitals
+from src.routing.route_time import get_route_time
 
 def triage_patient(config, point):
     for h in hospitals:

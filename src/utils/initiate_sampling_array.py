@@ -1,5 +1,5 @@
 import pandas as pd
-from data.municipalities import get_population_municipalities
+from src.data.municipalities import get_population_municipalities
 
 def initiate_sampling_array():
     data = get_population_municipalities()

@@ -1,6 +1,6 @@
-from sampling.municipality import draw_sample
-from sampling.polygons import extract_polygon_coordinates 
-from sampling.points import get_point
+from src.sampling.municipality import draw_sample
+from src.sampling.polygons import extract_polygon_coordinates 
+from src.sampling.points import get_point
 
 def sample_location(array):
     municipality = draw_sample(array)

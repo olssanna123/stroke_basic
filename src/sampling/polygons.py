@@ -2,7 +2,7 @@ import geopandas as gpd
 from shapely import polygons
 from pathlib import Path
 import geopandas as gpd
-from utils.random_generator import model
+from src.utils.random_generator import model
 
 def extract_polygon_coordinates(municipality_name):
     # Load shapefile

@@ -1,5 +1,5 @@
 import folium
-from routing.travel_route import get_route_info
+from src.routing.travel_route import get_route_info
 
 # --------------------------- Plot routes ---------------------------
 

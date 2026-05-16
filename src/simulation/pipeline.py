@@ -1,9 +1,9 @@
 from random import random
 from unittest import case
 
-from sampling.pipeline import sample_location
-from routing.triage import triage_patient
-from simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
+from src.sampling.pipeline import sample_location
+from src.routing.triage import triage_patient
+from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
 
 def run_single_iteration(config, array):
   # 1. Slumpa plats
