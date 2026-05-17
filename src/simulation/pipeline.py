@@ -6,7 +6,8 @@ from src.routing.triage import triage_patient
 from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
 
 def run_single_iteration(config, array):
-  # 1. Slumpa plats
+
+    # 1. Slumpa plats
   point = sample_location(array)
 
   # 2. Triage 

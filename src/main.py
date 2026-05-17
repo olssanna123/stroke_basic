@@ -16,16 +16,6 @@ def main():
     
     # Initialize the database
     create_database()   
-    inspect_db()
-
-    add_hospital()
-
-    session = SessionLocal()
-
-    hospitals = session.query(Hospital).all()
-
-    for h in hospitals:
-        print(h.id, h.name)
 
     # Initialize configuration and sampling array
     config = Config()          # Alla regler här
