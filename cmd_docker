@@ -8,17 +8,5 @@ docker run -t -i -p 5000:5000 `
   .\.venv\Scripts\activate    
 
 
-sim = Simulation(name="baseline")
-
-session.add(sim)
-session.commit()
-
-result = SimulationResult(
-    simulation_id=sim.id,
-    patient_id=patient.id,
-    hospital_id=hospital.id,
-    rule_id=rule.id,
-    time_seconds=120,
-    category="Sparad"
-)
-
+python create_db.py
+python inspect_db.py
