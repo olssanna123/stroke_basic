@@ -19,9 +19,9 @@ def get_all_route_times(point, emergency_hospital, academic_hospital):
     time_emergency_to_academic = get_route_time(emergency_hospital, academic_hospital)
 
     res = {
-        "time_to_emergency": time_to_emergency, 
-        "time_to_academic": time_to_academic,
-        "time_emergency_to_academic": time_emergency_to_academic
+        "Patient to emergency hospital": time_to_emergency, 
+        "Patient to academic hospital": time_to_academic,
+        "Emergency hospital to academic hospital": time_emergency_to_academic
     } 
 
     return res

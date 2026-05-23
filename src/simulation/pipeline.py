@@ -12,12 +12,11 @@ def run_single_iteration(config, array):
 
   # 2. Triage 
   triage_results = triage_patient(config, point)
-  print(triage_results)
 
   # 3. Simulera om trombektomi identifieras korrekt och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
     case "none":
-      metrics_none(config, point, triage_results["Chosen emergency hospital"])
+      metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
     case "sensitivity":
       metrics_sensitivity(config, point, triage_results["Chosen emergency hospital"])
     case "specificity":
@@ -30,7 +29,10 @@ def run_single_iteration(config, array):
   res = {
     "Patient": point,     
     "Chosen emergency hospital": triage_results["Chosen emergency hospital"].name,
-    "Triage rule": triage_results["Triage rule"]
+    "Triage rule": triage_results["Triage rule"],
+    "Patient to emergency hospital": metrics_results["Patient to emergency hospital"],
+    "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
+    "Patient to academic hospital": metrics_results["Patient to academic hospital"]
   }
   print(res)
 

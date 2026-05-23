@@ -23,7 +23,7 @@ def metrics_none(config, point, hospital):
 
     build_routes(point, hospital_coordinates, su)
 
-    return 
+    return res
 
 def metrics_sensitivity(config, point, hospital):   
     sensitivity = model(10)
