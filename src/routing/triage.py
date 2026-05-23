@@ -34,19 +34,19 @@ def triage_patient(config, point):
         if travel_times[1][1] < config.comparison_threshold_minutes * 60:
             res = {
                 "Chosen emergency hospital": travel_times[1][0],
-                "Triage rule": "Shorter total time to Sahlgrenska and less than 15 min."
+                "Triage rule": "Shorter total time to Sahlgrenska and less than 15 minutes longer than the closest hospital"
             }
             return res
         else:
             res = {
                 "Chosen emergency hospital": travel_times[0][0],
-                "Triage rule": "Closest emergency hospital."
+                "Triage rule": "Closest emergency hospital"
             }
             return res
     else:
         res = {
             "Chosen emergency hospital": travel_times[0][0],
-            "Triage rule": "Closest emergency hospital."
+            "Triage rule": "Closest emergency hospital"
         }
 
     return res
