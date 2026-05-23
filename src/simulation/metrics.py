@@ -19,7 +19,6 @@ def metrics_none(config, point, hospital):
             hospital_coordinates = y.coord()
 
     res = get_all_route_times(point, su, hospital_coordinates)
-    print(res)
 
     build_routes(point, hospital_coordinates, su)
 

@@ -17,6 +17,15 @@ def run_single_iteration(config, array):
   match config.variable:
     case "none":
       metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
+      res = {
+        "Patient": point,     
+        "Chosen emergency hospital": triage_results["Chosen emergency hospital"].name,
+        "Triage rule": triage_results["Triage rule"],
+        "Patient to emergency hospital": metrics_results["Patient to emergency hospital"],
+        "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
+        "Patient to academic hospital": metrics_results["Patient to academic hospital"]
+      }
+      print(res)
     case "sensitivity":
       metrics_sensitivity(config, point, triage_results["Chosen emergency hospital"])
     case "specificity":
@@ -26,14 +35,6 @@ def run_single_iteration(config, array):
       return  
 
   # 4. Spara resultat
-  res = {
-    "Patient": point,     
-    "Chosen emergency hospital": triage_results["Chosen emergency hospital"].name,
-    "Triage rule": triage_results["Triage rule"],
-    "Patient to emergency hospital": metrics_results["Patient to emergency hospital"],
-    "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
-    "Patient to academic hospital": metrics_results["Patient to academic hospital"]
-  }
-  print(res)
+
 
   return 
