@@ -1,7 +1,7 @@
 import pandas as pd
 from src.data.municipalities import get_population_municipalities
 
-def initiate_sampling_array():
+def initialize_array():
     data = get_population_municipalities()
     df = pd.DataFrame(data)
     sampling_array_list_of_lists = []

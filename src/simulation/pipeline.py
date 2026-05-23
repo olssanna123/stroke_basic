@@ -7,25 +7,31 @@ from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_sp
 
 def run_single_iteration(config, array):
 
-    # 1. Slumpa plats
+  # 1. Slumpa plats
   point = sample_location(array)
 
   # 2. Triage 
-  res = triage_patient(config, point)
-  print(res)
-  
+  triage_results = triage_patient(config, point)
+  print(triage_results)
+
   # 3. Simulera om trombektomi identifieras korrekt och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
     case "none":
-      metrics_none(config, point, res["Chosen emergency hospital"])
+      metrics_none(config, point, triage_results["Chosen emergency hospital"])
     case "sensitivity":
-      metrics_sensitivity(config, point, res["Chosen emergency hospital"])
+      metrics_sensitivity(config, point, triage_results["Chosen emergency hospital"])
     case "specificity":
-      metrics_specificity(config, point, res["Chosen emergency hospital"])
+      metrics_specificity(config, point, triage_results["Chosen emergency hospital"])
     case _:
       print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
       return  
 
   # 4. Spara resultat
- 
+  res = {
+    "Patient": point,     
+    "Chosen emergency hospital": triage_results["Chosen emergency hospital"].name,
+    "Triage rule": triage_results["Triage rule"]
+  }
+  print(res)
+
   return 

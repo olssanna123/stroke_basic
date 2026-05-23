@@ -6,7 +6,3 @@ docker run -t -i -p 5000:5000 `
   osrm-routed /data/sweden.osrm
 
   .\.venv\Scripts\activate    
-
-
-python create_db.py
-python inspect_db.py
