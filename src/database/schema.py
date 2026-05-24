@@ -19,7 +19,7 @@ def create_tables(config):
                     emergency_hospital_to_academic_hospital REAL,
                     patient_to_academic_hospital REAL,
                     variable TEXT,
-                    saved_time REAL
+                    time REAL
                 )
             """)
         case "sensitivity":

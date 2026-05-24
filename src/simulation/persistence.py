@@ -16,7 +16,7 @@ def accepted_iteration(config, iteration, results):
         "emergency_hospital_to_academic_hospital": results["emergency_hospital_to_academic_hospital"],
         "patient_to_academic_hospital": results["patient_to_academic_hospital"],
         "variable": results["variable"],
-        "saved_time": results["saved_time"]
+        "time": results["time"]
     }
 
     insert_iteration(config, iteration_results)

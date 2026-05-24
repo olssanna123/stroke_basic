@@ -18,7 +18,7 @@ def run_single_iteration(config, array):
   match config.variable:
     case "none":
       metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
-      saved_time = (metrics_results["Patient to emergency hospital"] + metrics_results["Emergency hospital to academic hospital"] + config.akut_treatment_time*60) - metrics_results["Patient to academic hospital"]
+      time = (metrics_results["Patient to emergency hospital"] + metrics_results["Emergency hospital to academic hospital"] + config.akut_treatment_time*60) - metrics_results["Patient to academic hospital"]
 
       res = {
         "Latitude": point[0],
@@ -30,7 +30,7 @@ def run_single_iteration(config, array):
         "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
         "Patient to academic hospital": metrics_results["Patient to academic hospital"],
         "Variable": config.variable,
-        "Saved time (seconds)": saved_time
+        "Time": time
       }
       
       print(res)
