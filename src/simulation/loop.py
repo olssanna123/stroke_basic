@@ -1,11 +1,8 @@
-from simulation.persistence import save_iteration
+from src.simulation.pipeline import run_single_iteration
 
-for i in range(1000):
-
-    response_time = run_simulation()
-
-    save_iteration(
-        iteration=i,
-        municipality="Göteborg",
-        response_time=response_time
-    )
+def run_loop(config, array):    
+    for i in range(config.n_iterations):
+        print(f"Running iteration {i+1}/{config.n_iterations}")
+        result = run_single_iteration(config, array)    
+        print(f"Iteration {i+1}/{config.n_iterations} completed")
+        print(result)

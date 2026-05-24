@@ -7,18 +7,23 @@ from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_sp
 
 def run_single_iteration(config, array):
 
-  # 1. Slumpa plats
+  # 1. Slumpa patient och hämta koordinater
   patient = sample_patient(array)
   point = (patient["latitude"], patient["longitude"])
 
   # 2. Triage 
   triage_results = triage_patient(config, point)
 
-  # 3. Simulera om trombektomi identifieras korrekt och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
+  # 3. Simulera trombektomi diganostik av instrument och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
     case "none":
       metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
-      time = (metrics_results["Patient to emergency hospital"] + metrics_results["Emergency hospital to academic hospital"] + config.akut_treatment_time*60) - metrics_results["Patient to academic hospital"]
+
+      if(triage_results["Chosen emergency hospital"] == "Sahlgrenska Universitetssjukhuset"):
+        print("Patient triaged to academic hospital, skipping time calculation.")
+        time = 0
+      else:
+        time = (metrics_results["Patient to emergency hospital"] + metrics_results["Emergency hospital to academic hospital"] + config.akut_treatment_time*60) - metrics_results["Patient to academic hospital"]
 
       res = {
         "Latitude": point[0],
@@ -32,8 +37,7 @@ def run_single_iteration(config, array):
         "Variable": config.variable,
         "Time": time
       }
-      
-      print(res)
+
       return res
     case "sensitivity":
       metrics_sensitivity(config, point, triage_results["Chosen emergency hospital"])
@@ -42,8 +46,5 @@ def run_single_iteration(config, array):
     case _:
       print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
       return  
-
-  # 4. Spara resultat
-
 
   return 
