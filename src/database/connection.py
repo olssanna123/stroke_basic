@@ -1,7 +1,7 @@
 import sqlite3
 from pathlib import Path
 
-DB_PATH = Path("runs/latest.db")
+DB_PATH = Path("output/latest.db")
 
 
 def get_connection():
