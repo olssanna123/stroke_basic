@@ -1,6 +1,3 @@
-from random import random
-from unittest import case
-
 from src.sampling.pipeline import sample_patient
 from src.routing.triage import triage_patient
 from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
@@ -13,18 +10,24 @@ def run_single_iteration(config, array):
 
   # 2. Triage 
   triage_results = triage_patient(config, point)
-
+  
   # 3. Simulera trombektomi diganostik av instrument och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
     case "none":
       metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
 
-      if(triage_results["Chosen emergency hospital"] == "Sahlgrenska Universitetssjukhuset"):
-        print("Patient triaged to academic hospital, skipping time calculation.")
-        time = 0
+      if triage_results["Chosen emergency hospital"].name == "Sahlgrenska Universitetssjukhuset":
+        print("SU!!!")
+        calc_time = 0
       else:
-        time = (metrics_results["Patient to emergency hospital"] + metrics_results["Emergency hospital to academic hospital"] + config.akut_treatment_time*60) - metrics_results["Patient to academic hospital"]
-
+        print("NOT SU!!!")
+        calc_time = (
+            metrics_results["Patient to emergency hospital"]
+          + metrics_results["Emergency hospital to academic hospital"]
+          + config.akut_treatment_time * 60
+          - metrics_results["Patient to academic hospital"]
+        )
+      
       res = {
         "Latitude": point[0],
         "Longitude": point[1],
@@ -35,7 +38,7 @@ def run_single_iteration(config, array):
         "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
         "Patient to academic hospital": metrics_results["Patient to academic hospital"],
         "Variable": config.variable,
-        "Time": time
+        "Time": calc_time
       }
 
       return res

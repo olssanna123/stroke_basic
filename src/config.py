@@ -2,7 +2,7 @@ from dataclasses import dataclass
 
 @dataclass
 class Config:
-    n_iterations: int = 3    # Ange antalet iterationer, n = 10, 100, 1000, eller 10000
+    n_iterations: int = 10    # Ange antalet iterationer, n = 10, 100, 1000, eller 10000
 
     variable: str = "none"  # Ange vilken variabel som ska variera, "sensitivity","specificity" eller "none" (100% för både sensitivity och specificity)
     sensitivity: int = 90    # Ange sensitivitet 90%, 80%, 50%
