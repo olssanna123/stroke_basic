@@ -1,4 +1,4 @@
-from src.database import get_connection
+from src.database.connection import get_connection
 
 
 def insert_iteration(iteration, municipality, response_time):
