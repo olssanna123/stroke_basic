@@ -45,3 +45,15 @@ def get_all_iterations():
     conn.close()
 
     return rows
+
+def table_info():
+    conn = get_connection()
+    cursor = conn.cursor()
+
+    info = cursor.execute("""
+        PRAGMA table_info(iterations)
+    """).fetchall()
+
+    conn.close()
+    print(info)
+    return 

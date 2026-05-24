@@ -1,5 +1,5 @@
 from src.config import Config
-from src.database.repository import get_all_iterations, insert_iteration
+from src.database.repository import get_all_iterations, insert_iteration, table_info
 from src.database.schema import create_tables
 from src.simulation.pipeline import run_single_iteration
 from src.utils.init_array import initialize_array
@@ -12,12 +12,13 @@ def main():
     create_tables(config)  # Skapa tabeller i databasen om de inte redan finns    
 
     # Kolla databas ok
-    rows = get_all_iterations()
-    print(rows)  # Skriv ut alla iterationer i databasen
+    table_info()
+ #   rows = get_all_iterations()
+ #   print(rows)  # Skriv ut alla iterationer i databasen
 
     array = initialize_array()  # Skapa en array som representera populationsdensiteten för kommunerna i VGR
     # Kör simuleringen
-    run_single_iteration(config, array)
+#    run_single_iteration(config, array)
 
 if __name__ == "__main__":
     main()
