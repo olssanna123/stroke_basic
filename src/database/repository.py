@@ -1,18 +1,35 @@
 from src.database.connection import get_connection
 
 
-def insert_iteration(iteration, municipality, response_time):
+def insert_iteration(config, results):
     conn = get_connection()
     cursor = conn.cursor()
 
-    cursor.execute("""
-        INSERT INTO iterations (
-            iteration,
-            municipality,
-            response_time
+    match config.variable:
+        case "none":             
+            cursor.execute("""
+                INSERT INTO iterations (
+                    iteration,
+                    latitude,
+                    longitude,
+                    municipality,
+                    emergency_hospital,
+                    triage_rule,
+                    patient_to_emergency_hospital,
+                    emergency_hospital_to_academic_hospital,
+                    patient_to_academic_hospital,
+                    variable,
+                    saved_time
         )
-        VALUES (?, ?, ?)
-    """, (iteration, municipality, response_time))
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (results["iteration"], results["latitude"], results["longitude"], results["municipality"], results["emergency_hospital"], results["triage_rule"], results["patient_to_emergency_hospital"], results["emergency_hospital_to_academic_hospital"], results["patient_to_academic_hospital"], results["variable"], results["saved_time"]))
+        case "sensitivity":
+            pass
+        case "specificity":
+            pass
+        case _:
+            print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
+            return
 
     conn.commit()
     conn.close()
