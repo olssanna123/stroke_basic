@@ -23,7 +23,8 @@ def run_single_iteration(config, array):
         "Triage rule": triage_results["Triage rule"],
         "Patient to emergency hospital": metrics_results["Patient to emergency hospital"],
         "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
-        "Patient to academic hospital": metrics_results["Patient to academic hospital"]
+        "Patient to academic hospital": metrics_results["Patient to academic hospital"],
+        "Variable": config.variable
       }
       print(res)
     case "sensitivity":

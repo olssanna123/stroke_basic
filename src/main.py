@@ -5,8 +5,11 @@ from src.simulation.pipeline import run_single_iteration
 from src.utils.init_array import initialize_array
 
 def main(): 
+    # Initialize configuration and sampling array
+    config = Config()          # Alla regler här
+
     # Skapa databas
-    create_tables()  # Skapa tabeller i databasen om de inte redan finns    
+    create_tables(config)  # Skapa tabeller i databasen om de inte redan finns    
 
     # Testa databas
     iteration = 1
@@ -18,11 +21,11 @@ def main():
     rows = get_all_iterations()
     print(rows)  # Skriv ut alla iterationer i databasen
 
-    # Initialize configuration and sampling array
-    #config = Config()          # Alla regler här
-    #array = initialize_array()  # Skapa en array som representera populationsdensiteten för kommunerna i VGR
+
+
+    array = initialize_array()  # Skapa en array som representera populationsdensiteten för kommunerna i VGR
     # Kör simuleringen
-    #run_single_iteration(config, array)
+    run_single_iteration(config, array)
 
 if __name__ == "__main__":
     main()
