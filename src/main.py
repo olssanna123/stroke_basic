@@ -13,6 +13,10 @@ def main():
 
     # Kör simuleringen
     run_loop(config, array)
-    
+
+    # Kolla resultat
+    rows = get_all_iterations()
+    print(rows)
+
 if __name__ == "__main__":
     main()

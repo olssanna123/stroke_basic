@@ -29,16 +29,16 @@ def run_single_iteration(config, array):
         )
       
       res = {
-        "Latitude": point[0],
-        "Longitude": point[1],
-        "Municipality": patient["municipality"],
-        "Chosen emergency hospital": triage_results["Chosen emergency hospital"].name,
-        "Triage rule": triage_results["Triage rule"],
-        "Patient to emergency hospital": metrics_results["Patient to emergency hospital"],
-        "Emergency hospital to academic hospital": metrics_results["Emergency hospital to academic hospital"],
-        "Patient to academic hospital": metrics_results["Patient to academic hospital"],
-        "Variable": config.variable,
-        "Time": calc_time
+        "latitude": point[0],
+        "longitude": point[1],
+        "municipality": patient["municipality"],
+        "emergency_hospital": triage_results["Chosen emergency hospital"].name,
+        "triage_rule": triage_results["Triage rule"],
+        "patient_to_emergency_hospital": metrics_results["Patient to emergency hospital"],
+        "emergency_hospital_to_academic_hospital": metrics_results["Emergency hospital to academic hospital"],
+        "patient_to_academic_hospital": metrics_results["Patient to academic hospital"],
+        "variable": config.variable,
+        "time": calc_time
       }
 
       return res
