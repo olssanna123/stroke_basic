@@ -10,8 +10,16 @@ def create_tables(config):
                 CREATE TABLE IF NOT EXISTS iterations (
                     id INTEGER PRIMARY KEY,
                     iteration INTEGER,
+                    latitude REAL,
+                    longitude REAL,
                     municipality TEXT,
-                    response_time REAL
+                    emergency_hospital TEXT,
+                    triage_rule TEXT,
+                    patient_to_emergency_hospital REAL,
+                    emergency_hospital_to_academic_hospital REAL,
+                    patient_to_academic_hospital REAL,
+                    variable TEXT,
+                    saved_time REAL
                 )
             """)
         case "sensitivity":

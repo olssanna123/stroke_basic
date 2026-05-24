@@ -11,17 +11,9 @@ def main():
     # Skapa databas
     create_tables(config)  # Skapa tabeller i databasen om de inte redan finns    
 
-    # Testa databas
-    iteration = 1
-    municipality = "Göteborg"  
-    response_time = 15.5  # Exempel på responstid i minuter
-    insert_iteration(iteration, municipality, response_time)   
-    
     # Kolla databas ok
     rows = get_all_iterations()
     print(rows)  # Skriv ut alla iterationer i databasen
-
-
 
     array = initialize_array()  # Skapa en array som representera populationsdensiteten för kommunerna i VGR
     # Kör simuleringen
