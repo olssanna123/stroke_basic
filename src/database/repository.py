@@ -1,7 +1,7 @@
 from src.database.connection import get_connection
 
 
-def insert_iteration(config, results):
+def insert_iteration(config, iteration, results):
     conn = get_connection()
     cursor = conn.cursor()
 
@@ -22,7 +22,7 @@ def insert_iteration(config, results):
                     saved_time
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (results["iteration"], results["latitude"], results["longitude"], results["municipality"], results["emergency_hospital"], results["triage_rule"], results["patient_to_emergency_hospital"], results["emergency_hospital_to_academic_hospital"], results["patient_to_academic_hospital"], results["variable"], results["saved_time"]))
+    """, (iteration, results["latitude"], results["longitude"], results["municipality"], results["emergency_hospital"], results["triage_rule"], results["patient_to_emergency_hospital"], results["emergency_hospital_to_academic_hospital"], results["patient_to_academic_hospital"], results["variable"], results["saved_time"]))
         case "sensitivity":
             pass
         case "specificity":
