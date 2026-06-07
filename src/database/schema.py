@@ -1,11 +1,11 @@
 from src.database.connection import get_connection
-
+from src.models.variable import Variable
 
 def create_tables(config):
     conn = get_connection()
     cursor = conn.cursor()
     match config.variable:
-        case "none": 
+        case Variable.NONE:
             cursor.execute("""
                 CREATE TABLE IF NOT EXISTS iterations (
                     id INTEGER PRIMARY KEY,
@@ -22,9 +22,9 @@ def create_tables(config):
                     time REAL
                 )
             """)
-        case "sensitivity":
+        case Variable.SENSITIVITY:
             pass
-        case "specificity":
+        case Variable.SPECIFICITY:
             pass
         case _:
             print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")

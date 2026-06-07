@@ -1,6 +1,9 @@
+from src import config
 from src.sampling.pipeline import sample_patient
 from src.routing.triage import triage_patient
 from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
+from src.models.route_result import Result
+from src.models.variable import Variable
 
 def run_single_iteration(config, array):
 
@@ -11,9 +14,12 @@ def run_single_iteration(config, array):
   # 2. Triage 
   triage_results = triage_patient(config, point)
   
+  print(config.variable)
+  print(type(config.variable))
+
   # 3. Simulera trombektomi diganostik av instrument och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
-    case "none":
+    case Variable.NONE:
       metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
 
       if triage_results["Chosen emergency hospital"].name == "Sahlgrenska Universitetssjukhuset":
@@ -26,23 +32,23 @@ def run_single_iteration(config, array):
           - metrics_results["Patient to academic hospital"]
         )
       
-      res = {
-        "latitude": point[0],
-        "longitude": point[1],
-        "municipality": patient["municipality"],
-        "emergency_hospital": triage_results["Chosen emergency hospital"].name,
-        "triage_rule": triage_results["Triage rule"],
-        "patient_to_emergency_hospital": metrics_results["Patient to emergency hospital"],
-        "emergency_hospital_to_academic_hospital": metrics_results["Emergency hospital to academic hospital"],
-        "patient_to_academic_hospital": metrics_results["Patient to academic hospital"],
-        "variable": config.variable,
-        "time": calc_time
-      }
-
-      return res
-    case "sensitivity":
+      results = Result(
+        latitude=point[0],
+        longitude=point[1],
+        municipality=patient["municipality"],
+        emergency_hospital=triage_results["Chosen emergency hospital"].name,
+        triage_rule=triage_results["Triage rule"],
+        patient_to_emergency_hospital=metrics_results["Patient to emergency hospital"],
+        emergency_hospital_to_academic_hospital=metrics_results["Emergency hospital to academic hospital"],
+        patient_to_academic_hospital=metrics_results["Patient to academic hospital"],
+        variable=config.variable,
+        time=calc_time
+      )
+      
+      return results
+    case Variable.SENSITIVITY:
       metrics_sensitivity(config, point, triage_results["Chosen emergency hospital"])
-    case "specificity":
+    case Variable.SPECIFICITY:
       metrics_specificity(config, point, triage_results["Chosen emergency hospital"])
     case _:
       print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")

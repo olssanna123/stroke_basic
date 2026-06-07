@@ -1,4 +1,5 @@
 from src.database.connection import get_connection
+from src.models.variable import Variable
 
 
 def insert_iteration(config, iteration, results):
@@ -6,7 +7,7 @@ def insert_iteration(config, iteration, results):
     cursor = conn.cursor()
 
     match config.variable:
-        case "none":             
+        case Variable.NONE:
             cursor.execute("""
                 INSERT INTO iterations (
                     iteration,
@@ -22,10 +23,10 @@ def insert_iteration(config, iteration, results):
                     time
         )
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (iteration, results["latitude"], results["longitude"], results["municipality"], results["emergency_hospital"], results["triage_rule"], results["patient_to_emergency_hospital"], results["emergency_hospital_to_academic_hospital"], results["patient_to_academic_hospital"], results["variable"], results["time"]))
-        case "sensitivity":
+    """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time))
+        case Variable.SENSITIVITY:
             pass
-        case "specificity":
+        case Variable.SPECIFICITY:
             pass
         case _:
             print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
