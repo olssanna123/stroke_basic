@@ -1,6 +1,6 @@
 # --------------------------- Get travel times ---------------------------
 from src.routing.travel_route import get_route_info
-
+from src.models.metrics_result import MetricsResult
 
 def get_route_time(origin_latlon, dest_latlon):
     origin_lat, origin_lon = origin_latlon
@@ -18,10 +18,8 @@ def get_all_route_times(point, emergency_hospital, academic_hospital):
     time_to_academic = get_route_time(point, academic_hospital)
     time_emergency_to_academic = get_route_time(emergency_hospital, academic_hospital)
 
-    res = {
-        "Patient to emergency hospital": time_to_emergency, 
-        "Patient to academic hospital": time_to_academic,
-        "Emergency hospital to academic hospital": time_emergency_to_academic
-    } 
-
-    return res
+    return MetricsResult(
+        patient_to_emergency_hospital=time_to_emergency,
+        emergency_hospital_to_academic_hospital=time_emergency_to_academic,
+        patient_to_academic_hospital=time_to_academic
+    )

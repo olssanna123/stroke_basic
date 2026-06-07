@@ -6,6 +6,7 @@ from src.models.route_result import Result
 from src.models.variable import Variable
 from src.models.patient import Patient
 from src.models.triage_result import TriageResult
+from src.models.metrics_result import MetricsResult
 
 def run_single_iteration(config, array):
 
@@ -28,10 +29,10 @@ def run_single_iteration(config, array):
         calc_time = 0
       else:
         calc_time = (
-            metrics_results["Patient to emergency hospital"]
-          + metrics_results["Emergency hospital to academic hospital"]
+            metrics_results.patient_to_academic_hospital
+          + metrics_results.emergency_hospital_to_academic_hospital
           + config.akut_treatment_time * 60
-          - metrics_results["Patient to academic hospital"]
+          - metrics_results.patient_to_academic_hospital
         )
       
       results = Result(
@@ -40,9 +41,9 @@ def run_single_iteration(config, array):
         municipality=patient.municipality,
         emergency_hospital=triage_results.chosen_emergency_hospital.name,
         triage_rule=triage_results.triage_rule,
-        patient_to_emergency_hospital=metrics_results["Patient to emergency hospital"],
-        emergency_hospital_to_academic_hospital=metrics_results["Emergency hospital to academic hospital"],
-        patient_to_academic_hospital=metrics_results["Patient to academic hospital"],
+        patient_to_emergency_hospital=metrics_results.patient_to_emergency_hospital,
+        emergency_hospital_to_academic_hospital=metrics_results.emergency_hospital_to_academic_hospital,
+        patient_to_academic_hospital=metrics_results.patient_to_academic_hospital,
         variable=config.variable,
         time=calc_time
       )
