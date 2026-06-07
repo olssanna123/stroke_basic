@@ -1,14 +1,5 @@
-from dataclasses import dataclass
-
-@dataclass(frozen=True)
-class Hospital:
-    name: str
-    latitude: float
-    longitude: float
-
-    def coord(self):
-        return (self.latitude, self.longitude)
-    
+from src.models.hospital import Hospital
+ 
 hospitals = [
     Hospital("Kungälvs sjukhus", 57.878303, 11.969459),
     Hospital("Norra Älvsborgs länssjukhus", 58.318547, 12.265819),
