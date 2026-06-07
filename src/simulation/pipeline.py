@@ -4,12 +4,13 @@ from src.routing.triage import triage_patient
 from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
 from src.models.route_result import Result
 from src.models.variable import Variable
+from src.models.patient import Patient
 
 def run_single_iteration(config, array):
 
   # 1. Slumpa patient och hämta koordinater
   patient = sample_patient(array)
-  point = (patient["latitude"], patient["longitude"])
+  point = (patient.latitude, patient.longitude)
 
   # 2. Triage 
   triage_results = triage_patient(config, point)
@@ -35,7 +36,7 @@ def run_single_iteration(config, array):
       results = Result(
         latitude=point[0],
         longitude=point[1],
-        municipality=patient["municipality"],
+        municipality=patient.municipality,
         emergency_hospital=triage_results["Chosen emergency hospital"].name,
         triage_rule=triage_results["Triage rule"],
         patient_to_emergency_hospital=metrics_results["Patient to emergency hospital"],
