@@ -1,5 +1,7 @@
 from src.data.emergency_hospitals import hospitals
 from src.routing.route_time import get_route_time
+from src.models.triage_result import TriageResult
+from src.models.hospital import Hospital    
 
 def triage_patient(config, point):
     for h in hospitals:
@@ -11,10 +13,10 @@ def triage_patient(config, point):
 
     # If the travel time to SU is less than 45 minutes, triage to SU
     if time_to_sahl < config.su_threshold_minutes * 60:
-        res = {
-                "Chosen emergency hospital": su_hospital_object,
-                "Triage rule": "Sahlgrenska Universitetssjukhuset is within given time threshold"
-            }
+        res = TriageResult(
+            chosen_emergency_hospital=su_hospital_object,
+            triage_rule="Sahlgrenska Universitetssjukhuset is within given time threshold"
+        )
         return res
     
     # Decision rule "Choose the closest emergency hospital. Exception, if another emergency hospital is closer to Sahlgrenska,
@@ -32,21 +34,21 @@ def triage_patient(config, point):
 
     if time_to_sahl2 < time_to_sahl1:
         if travel_times[1][1] < config.comparison_threshold_minutes * 60:
-            res = {
-                "Chosen emergency hospital": travel_times[1][0],
-                "Triage rule": "Shorter total time to Sahlgrenska and less than 15 minutes longer than the closest hospital"
-            }
+            res = TriageResult(
+                chosen_emergency_hospital=travel_times[1][0],
+                triage_rule="Shorter total time to Sahlgrenska and less than 15 minutes longer than the closest hospital"
+            )
             return res
         else:
-            res = {
-                "Chosen emergency hospital": travel_times[0][0],
-                "Triage rule": "Closest emergency hospital"
-            }
+            res = TriageResult(
+                chosen_emergency_hospital=travel_times[0][0],
+                triage_rule="Closest emergency hospital"
+            )
             return res
     else:
-        res = {
-            "Chosen emergency hospital": travel_times[0][0],
-            "Triage rule": "Closest emergency hospital"
-        }
-
+        res = TriageResult(
+            chosen_emergency_hospital=travel_times[0][0],
+            triage_rule="Closest emergency hospital"
+        )
+        
     return res
