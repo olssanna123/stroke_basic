@@ -17,10 +17,8 @@ def run_single_iteration(config, array):
       metrics_results = metrics_none(config, point, triage_results["Chosen emergency hospital"])
 
       if triage_results["Chosen emergency hospital"].name == "Sahlgrenska Universitetssjukhuset":
-        print("SU!!!")
         calc_time = 0
       else:
-        print("NOT SU!!!")
         calc_time = (
             metrics_results["Patient to emergency hospital"]
           + metrics_results["Emergency hospital to academic hospital"]
