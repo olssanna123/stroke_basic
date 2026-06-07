@@ -1,4 +1,4 @@
-from dataclasses import dataclass
+from dataclasses import dataclass, asdict
 
 @dataclass(frozen=True)
 class Result:
@@ -13,4 +13,5 @@ class Result:
     variable: str
     time: float
 
-
+    def to_dict(self) -> dict:
+        return asdict(self)
