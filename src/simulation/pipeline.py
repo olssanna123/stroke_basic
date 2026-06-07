@@ -29,7 +29,7 @@ def run_single_iteration(config, array):
         calc_time = 0
       else:
         calc_time = (
-            metrics_results.patient_to_academic_hospital
+            metrics_results.patient_to_emergency_hospital
           + metrics_results.emergency_hospital_to_academic_hospital
           + config.akut_treatment_time * 60
           - metrics_results.patient_to_academic_hospital
