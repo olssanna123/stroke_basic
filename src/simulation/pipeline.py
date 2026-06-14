@@ -16,9 +16,6 @@ def run_single_iteration(config, array):
 
   # 2. Triage 
   triage_results = triage_patient(config, point)
-  
-  print(config.variable)
-  print(type(config.variable))
 
   # 3. Simulera trombektomi diganostik av instrument och beräkna resultatet av det (beroende på vilken variabel som var vald i config)
   match config.variable:
