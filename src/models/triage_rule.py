@@ -2,6 +2,6 @@ from dataclasses import dataclass
 
 @dataclass(frozen=True)
 class TriageRule:
-    RULE1: str
-    RULE2: str
-    RULE3: str
+    rule1: str
+    rule2: str
+    rule3: str
