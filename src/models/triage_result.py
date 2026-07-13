@@ -1,4 +1,3 @@
-# ------------- domänmodell --------------
 from dataclasses import dataclass
 from src.models.hospital import Hospital
 

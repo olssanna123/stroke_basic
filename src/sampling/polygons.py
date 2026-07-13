@@ -5,21 +5,21 @@ import geopandas as gpd
 from src.utils.random_generator import model
 
 def extract_polygon_coordinates(municipality_name):
-    # Load shapefile
+    # Ladda shapefile
     BASE_DIR = Path(__file__).resolve().parent.parent
     shapefile = BASE_DIR / "data" / "Kommuner.shp"
     gdf = gpd.read_file(shapefile)
     
-    # Sweden uses SWEREF 99, globally usually uses WGS84, convert to WGS84 (lat/lon)
+    # Konvertera från SWEREF 99 till to WGS84
     gdf = gdf.to_crs(epsg=4326)
     
-    # Get municipality
+    # Hämta datan för kommunen
     municipality = gdf[gdf["KnNamn"] == municipality_name]
     
     if municipality.empty:
         raise ValueError(f"Municipality '{municipality_name}' not found in the shapefile.")
     
-    # Extract geometry
+    # Hämta geometrin för kommunen
     geom = municipality.geometry.iloc[0]
 
     # Handle MultiPolygon, file contains Polygon and MultiPolygon (islands)

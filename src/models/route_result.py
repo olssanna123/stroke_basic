@@ -1,4 +1,3 @@
-# ------------- domänmodell --------------
 from dataclasses import dataclass, asdict
 from src.models.variable import Variable
 

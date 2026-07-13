@@ -11,7 +11,7 @@ def triage_patient(config, point):
 
     time_to_sahl = get_route_time(point, su)
 
-    # If the travel time to SU is less than 45 minutes, triage to SU
+# Om restiden direkt till SU är mindre än den givna tidsgränsen triageras patienten direkt dit
     if time_to_sahl < config.su_threshold_minutes * 60:
         res = TriageResult(
             chosen_emergency_hospital=su_hospital_object,
@@ -19,14 +19,14 @@ def triage_patient(config, point):
         )
         return res
     
-    # Decision rule "Choose the closest emergency hospital. Exception, if another emergency hospital is closer to Sahlgrenska,
-    # and the time difference between the that hospital and the closest emergency hospital is less than 15 minutes,
-    # the emergency hospital closer to Sahlgrenska is chosen."
+    # Beslutsregel: Välj det närmaste akutsjukhuset. Undantag: Om ett annat akutsjukhus
+    # ligger närmare Sahlgrenska och tidsskillnaden mellan detta sjukhus och det närmaste
+    # akutsjukhuset är mindre än 15 minuter, väljs det akutsjukhus som ligger närmast Sahlgrenska.
 
-    # Create a list of (hospital, travel_time) tuples
+    # Skapa en lista med (hospital, travel_time) tuples
     travel_times = [(hospital, get_route_time(point, hospital.coord())) for hospital in hospitals]
    
-     # Sort by travel time
+    # Sortera efter restid
     travel_times.sort(key=lambda x: x[1])
 
     time_to_sahl1 = travel_times[0][1] + get_route_time(travel_times[0][0].coord(), su)
