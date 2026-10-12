@@ -4,6 +4,7 @@ from src.database.schema import create_tables
 from src.simulation.loop import run_loop
 from src.simulation.pipeline import run_single_iteration
 from src.utils.init_array import initialize_array
+from src.utils.plot import plot_time_vs_id
 
 def main(): 
     print("Hello world!")
@@ -16,8 +17,11 @@ def main():
     run_loop(config, array)
 
     # Kolla resultat
-    rows = get_all_iterations()
-    print(rows)
+   # rows = get_all_iterations()
+   # print(rows)
+
+#    table_info()
+    plot_time_vs_id()
 
 if __name__ == "__main__":
     main()
