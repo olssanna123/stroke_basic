@@ -8,7 +8,7 @@ from src.utils.init_array import initialize_array
 def main(): 
     print("Hello world!")
     # Initialize configuration, tables and sampling array
-    #config = Config()          
+    config = Config()          
     #create_tables(config)      
     #array = initialize_array() 
 

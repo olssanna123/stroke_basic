@@ -1,4 +1,3 @@
-# ------------- domänmodell --------------
 from enum import Enum
 
 class Variable(Enum):

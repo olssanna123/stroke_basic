@@ -1,7 +1,7 @@
 from dataclasses import dataclass
 
 @dataclass(frozen=True)
-class TriageRule:
-    RULE1: str
-    RULE2: str
-    RULE3: str
+class Patient:
+    latitude: float
+    longitude: float
+    municipality: str
