@@ -23,9 +23,40 @@ def create_tables(config):
                 )
             """)
         case Variable.SENSITIVITY:
-            pass
+                        cursor.execute("""
+                CREATE TABLE IF NOT EXISTS iterations (
+                    id INTEGER PRIMARY KEY,
+                    iteration INTEGER,
+                    latitude REAL,
+                    longitude REAL,
+                    municipality TEXT,
+                    emergency_hospital TEXT,
+                    triage_rule TEXT,
+                    patient_to_emergency_hospital REAL,
+                    emergency_hospital_to_academic_hospital REAL,
+                    patient_to_academic_hospital REAL,
+                    variable TEXT,
+                    time REAL
+                )
+            """)
         case Variable.SPECIFICITY:
-            pass
+            cursor.execute("""
+                CREATE TABLE IF NOT EXISTS iterations (
+                    id INTEGER PRIMARY KEY,
+                    iteration INTEGER,
+                    latitude REAL,
+                    longitude REAL,
+                    municipality TEXT,
+                    emergency_hospital TEXT,
+                    triage_rule TEXT,
+                    patient_to_emergency_hospital REAL,
+                    emergency_hospital_to_academic_hospital REAL,
+                    patient_to_academic_hospital REAL,
+                    variable TEXT,
+                    time REAL,
+                    time_status TEXT
+                )
+            """)
         case _:
             print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
     conn.commit()
