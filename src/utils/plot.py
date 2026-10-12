@@ -15,7 +15,7 @@ def plot_time_vs_id():
 
     # Rita diagrammet
     plt.figure(figsize=(10, 5))
-    plt.plot(id_lista, time_lista, marker='o', linestyle='-')
+    plt.scatter(id_lista, time_lista)
 
     plt.xlabel("ID")
     plt.ylabel("Time")
