@@ -6,17 +6,18 @@ from src.simulation.pipeline import run_single_iteration
 from src.utils.init_array import initialize_array
 
 def main(): 
+    print("Hello world!")
     # Initialize configuration, tables and sampling array
-    config = Config()          
-    create_tables(config)      
-    array = initialize_array() 
+    #config = Config()          
+    #create_tables(config)      
+    #array = initialize_array() 
 
     # Kör simuleringen
-    run_loop(config, array)
+    #run_loop(config, array)
 
     # Kolla resultat
-    rows = get_all_iterations()
-    print(rows)
+    #rows = get_all_iterations()
+    #print(rows)
 
 if __name__ == "__main__":
     main()
