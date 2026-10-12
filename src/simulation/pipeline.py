@@ -11,7 +11,7 @@ from src.models.variable import Variable
 from src.models.patient import Patient
 from src.models.triage_result import TriageResult
 from src.models.metrics_result import MetricsResult
-from src.models.time_status import TimeStatus, SAVED, LOST
+from src.models.time_status import TimeStatus
 
 def run_single_iteration(config, array):
 
@@ -113,11 +113,11 @@ def run_single_iteration(config, array):
 
       if triage_results.chosen_emergency_hospital.name == "Sahlgrenska Universitetssjukhuset":
         calc_time = 0
-        time_status = SAVED
+        time_status = TimeStatus.SAVED
         print("Patient triaged to SU, no saved time.")
       elif percentage:
         calc_time = (metrics_results.patient_to_academic_hospital - metrics_results.patient_to_emergency_hospital)
-        time_status = LOST
+        time_status = TimeStatus.LOST
         print("Trombektomi falsely identified, calculating lost time.")     
       else:
         calc_time = (
@@ -126,7 +126,7 @@ def run_single_iteration(config, array):
           + config.akut_treatment_time * 60
           - metrics_results.patient_to_academic_hospital
         )
-        time_status = SAVED
+        time_status = TimeStatus.SAVED
         print("Trombektomi correctly identified, no lost time.")
 
 
