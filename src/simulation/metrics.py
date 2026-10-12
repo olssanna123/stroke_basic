@@ -24,16 +24,3 @@ def metrics_none(config, point, hospital):
     build_routes(point, hospital_coordinates, su)
 
     return metrics
-
-def metrics_specificity(config, point, hospital):
-
-    for x in hospitals:
-        if x.name == "Sahlgrenska Universitetssjukhuset":
-            su = x.coord()
-
-    for y in hospitals:
-        if y.name == hospital.name:
-            hospital_coordinates = y.coord()
-
-
-    return

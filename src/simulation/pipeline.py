@@ -5,7 +5,7 @@ from sqlalchemy import case
 from src import config
 from src.sampling.pipeline import sample_patient
 from src.routing.triage import triage_patient
-from src.simulation.metrics import metrics_none, metrics_sensitivity, metrics_specificity
+from src.simulation.metrics import metrics_none
 from src.models.route_result import Result
 from src.models.variable import Variable
 from src.models.patient import Patient
