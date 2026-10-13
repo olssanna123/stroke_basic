@@ -3,7 +3,7 @@ from src.models.variable import Variable
 
 @dataclass
 class Config:
-    n_iterations: int = 3    # Ange antalet iterationer, n = 10, 100, 1000, eller 10000
+    n_iterations: int = 2    # Ange antalet iterationer, n = 10, 100, 1000, eller 10000
 
     variable: Variable = Variable.SENSITIVITY  # Ange vilken variabel som ska variera, "sensitivity","specificity" eller "none" (100% för både sensitivity och specificity)
     sensitivity: int = 90    # Ange sensitivitet 90%, 80%, 50%

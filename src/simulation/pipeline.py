@@ -100,7 +100,7 @@ def run_single_iteration(config, array):
         time=calc_time
       )
       print(f"Results: {results}")
-
+      return results
     case Variable.SPECIFICITY:
       metrics_results = metrics_none(config, point, triage_results.chosen_emergency_hospital)
       
@@ -148,7 +148,8 @@ def run_single_iteration(config, array):
         time=calc_time,
         time_status=time_status
       )
-      
+      print(f"Results: {results}")
+      return results
     case _:
       print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
       return  
