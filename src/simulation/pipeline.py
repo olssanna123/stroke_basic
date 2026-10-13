@@ -97,7 +97,7 @@ def run_single_iteration(config, array):
         emergency_hospital_to_academic_hospital=metrics_results.emergency_hospital_to_academic_hospital,
         patient_to_academic_hospital=metrics_results.patient_to_academic_hospital,
         variable=config.variable,
-        time=calc_time
+        time=calc_time,
         status="saved"
       )
       print(f"Results: {results}")
