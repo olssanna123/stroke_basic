@@ -20,10 +20,11 @@ def insert_iteration(config, iteration, results):
                     emergency_hospital_to_academic_hospital,
                     patient_to_academic_hospital,
                     variable,
-                    time
+                    time,
+                    status
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time))
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time, results.status))
         case Variable.SENSITIVITY:
             cursor.execute("""
                 INSERT INTO iterations (
@@ -37,10 +38,11 @@ def insert_iteration(config, iteration, results):
                     emergency_hospital_to_academic_hospital,
                     patient_to_academic_hospital,
                     variable,
-                    time
+                    time,
+                    status
         )
-        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-    """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time))
+        VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+    """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time, results.status))
         case Variable.SPECIFICITY:
             cursor.execute("""
                 INSERT INTO iterations (
@@ -55,10 +57,10 @@ def insert_iteration(config, iteration, results):
                     patient_to_academic_hospital,
                     variable,
                     time,
-                    time_status
+                    status
                 )
-                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
-            """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time, results.time_status))
+                VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
+            """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time, results.status))
         case _:
             print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
             return

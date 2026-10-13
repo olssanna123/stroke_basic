@@ -19,7 +19,8 @@ def create_tables(config):
                     emergency_hospital_to_academic_hospital REAL,
                     patient_to_academic_hospital REAL,
                     variable TEXT,
-                    time REAL
+                    time REAL,
+                    status TEXT
                 )
             """)
         case Variable.SENSITIVITY:
@@ -36,7 +37,8 @@ def create_tables(config):
                     emergency_hospital_to_academic_hospital REAL,
                     patient_to_academic_hospital REAL,
                     variable TEXT,
-                    time REAL
+                    time REAL,
+                    status TEXT
                 )
             """)
         case Variable.SPECIFICITY:
@@ -54,7 +56,7 @@ def create_tables(config):
                     patient_to_academic_hospital REAL,
                     variable TEXT,
                     time REAL,
-                    time_status TEXT
+                    status TEXT
                 )
             """)
         case _:

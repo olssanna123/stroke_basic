@@ -19,7 +19,7 @@ def plot_time_vs_id():
 
     plt.xlabel("Patient nummer (ID)")
     plt.ylabel("Time (s)")
-    plt.title("Spridningsdiagram för sparad tid, N = 10000, 100% Sensitivitet 100% Specificitet, behandlingstid 30 min")
+    plt.title("Spridningsdiagram för sparad tid, N = 1000, 50% Sensitivitet, behandlingstid 30 min")
     plt.grid(True)
     plt.tight_layout()
     plt.show()  

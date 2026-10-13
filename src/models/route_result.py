@@ -13,6 +13,7 @@ class Result:
     patient_to_academic_hospital: float
     variable: Variable
     time: float
+    status: str
 
     def to_dict(self) -> dict:
         return asdict(self)

@@ -11,7 +11,6 @@ from src.models.variable import Variable
 from src.models.patient import Patient
 from src.models.triage_result import TriageResult
 from src.models.metrics_result import MetricsResult
-from src.models.time_status import TimeStatus
 from src.utils.random_generator import model
 
 def run_single_iteration(config, array):
@@ -49,7 +48,8 @@ def run_single_iteration(config, array):
         emergency_hospital_to_academic_hospital=metrics_results.emergency_hospital_to_academic_hospital,
         patient_to_academic_hospital=metrics_results.patient_to_academic_hospital,
         variable=config.variable,
-        time=calc_time
+        time=calc_time,
+        status="saved"
       )
 
       return results
@@ -98,10 +98,13 @@ def run_single_iteration(config, array):
         patient_to_academic_hospital=metrics_results.patient_to_academic_hospital,
         variable=config.variable,
         time=calc_time
+        status="saved"
       )
       print(f"Results: {results}")
       return results
     case Variable.SPECIFICITY:
+      print("Running specificity analysis...")
+
       metrics_results = metrics_none(config, point, triage_results.chosen_emergency_hospital)
       
       specificity = model(10)
@@ -118,11 +121,11 @@ def run_single_iteration(config, array):
 
       if triage_results.chosen_emergency_hospital.name == "Sahlgrenska Universitetssjukhuset":
         calc_time = 0
-        time_status = TimeStatus.SAVED
+        status = "saved"
         print("Patient triaged to SU, no saved time.")
       elif percentage:
         calc_time = (metrics_results.patient_to_academic_hospital - metrics_results.patient_to_emergency_hospital)
-        time_status = TimeStatus.LOST
+        status = "lost"
         print("Trombektomi falsely identified, calculating lost time.")     
       else:
         calc_time = (
@@ -131,10 +134,11 @@ def run_single_iteration(config, array):
           + config.akut_treatment_time * 60
           - metrics_results.patient_to_academic_hospital
         )
-        time_status = TimeStatus.SAVED
+        status = "saved"
         print("Trombektomi correctly identified, no lost time.")
 
-
+      print(f"Metrics results: {metrics_results}")
+      print(f"Status: {status}")
       results = Result(
         latitude=point[0],
         longitude=point[1],
@@ -146,8 +150,9 @@ def run_single_iteration(config, array):
         patient_to_academic_hospital=metrics_results.patient_to_academic_hospital,
         variable=config.variable,
         time=calc_time,
-        time_status=time_status
+        status=status
       )
+      print(f"Hello!!!!!!")
       print(f"Results: {results}")
       return results
     case _:
