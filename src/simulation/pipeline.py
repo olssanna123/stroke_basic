@@ -57,11 +57,9 @@ def run_single_iteration(config, array):
       print("Running sensitivity analysis...")
 
       metrics_results = metrics_none(config, point, triage_results.chosen_emergency_hospital)
-      print(f"Metrics results: {metrics_results}")
-
+      
       sensitivity = model(10)
-      print(f"Sensitivity: {sensitivity}")
-
+      
       match config.sensitivity:
         case 90:
             percentage = sensitivity == 10
@@ -137,8 +135,6 @@ def run_single_iteration(config, array):
         status = "saved"
         print("Trombektomi correctly identified, no lost time.")
 
-      print(f"Metrics results: {metrics_results}")
-      print(f"Status: {status}")
       results = Result(
         latitude=point[0],
         longitude=point[1],
@@ -152,8 +148,6 @@ def run_single_iteration(config, array):
         time=calc_time,
         status=status
       )
-      print(f"Hello!!!!!!")
-      print(f"Results: {results}")
       return results
     case _:
       print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")

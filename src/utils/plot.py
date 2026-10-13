@@ -1,12 +1,15 @@
+
 import matplotlib.pyplot as plt
-import sqlite3
 from src.database.connection import get_connection
 
 def plot_time_vs_id():
-    # Hämta data från databasen
+    # Hämta endast data med status "saved"
     conn = get_connection()
     cursor = conn.cursor()
-    cursor.execute("SELECT id, time FROM iterations")
+    cursor.execute(
+        "SELECT id, time FROM iterations WHERE status = ?",
+        ("lost",)
+    )
     resultat = cursor.fetchall()
 
     # Dela upp värdena i två listor
@@ -19,7 +22,12 @@ def plot_time_vs_id():
 
     plt.xlabel("Patient nummer (ID)")
     plt.ylabel("Time (s)")
-    plt.title("Spridningsdiagram för sparad tid, N = 1000, 50% Sensitivitet, behandlingstid 30 min")
+    plt.title(
+        "Spridningsdiagram för förlorad tid, N = 1000, "
+        "80% Specificitet, behandlingstid 30 min"
+    )
     plt.grid(True)
     plt.tight_layout()
-    plt.show()  
+    plt.show()
+
+    conn.close()
