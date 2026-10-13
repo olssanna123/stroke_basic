@@ -7,7 +7,7 @@ class Config:
 
     variable: Variable = Variable.SPECIFICITY  # Ange vilken variabel som ska variera, "sensitivity","specificity" eller "none" (100% för både sensitivity och specificity)
     sensitivity: int = 50    # Ange sensitivitet 90%, 80%, 50%
-    specificity: int = 80   # Ange specificitet 90%, 80%, 50%
+    specificity: int = 50   # Ange specificitet 90%, 80%, 50%
 
     su_threshold_minutes: int = 45
     comparison_threshold_minutes: int = 15

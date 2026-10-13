@@ -8,7 +8,7 @@ def plot_time_vs_id():
     cursor = conn.cursor()
     cursor.execute(
         "SELECT id, time FROM iterations WHERE status = ?",
-        ("lost",)
+        ("saved",)
     )
     resultat = cursor.fetchall()
 
@@ -23,8 +23,8 @@ def plot_time_vs_id():
     plt.xlabel("Patient nummer (ID)")
     plt.ylabel("Time (s)")
     plt.title(
-        "Spridningsdiagram för förlorad tid, N = 1000, "
-        "80% Specificitet, behandlingstid 30 min"
+        "Spridningsdiagram för sparad tid, N = 1000, "
+        "50% Specificitet, behandlingstid 30 min"
     )
     plt.grid(True)
     plt.tight_layout()
