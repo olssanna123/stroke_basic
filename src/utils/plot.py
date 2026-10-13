@@ -17,9 +17,9 @@ def plot_time_vs_id():
     plt.figure(figsize=(10, 5))
     plt.scatter(id_lista, time_lista)
 
-    plt.xlabel("ID")
-    plt.ylabel("Time")
-    plt.title("Time för varje ID")
+    plt.xlabel("Patient nummer (ID)")
+    plt.ylabel("Time (s)")
+    plt.title("Spridningsdiagram för sparad tid, N = 10000, 100% Sensitivitet 100% Specificitet, behandlingstid 30 min")
     plt.grid(True)
     plt.tight_layout()
     plt.show()  

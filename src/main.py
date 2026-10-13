@@ -17,11 +17,11 @@ def main():
     run_loop(config, array)
 
     # Kolla resultat
-   # rows = get_all_iterations()
-   # print(rows)
+    rows = get_all_iterations()
+    print(rows)
 
 #    table_info()
-    plot_time_vs_id()
+#    plot_time_vs_id()
 
 if __name__ == "__main__":
     main()

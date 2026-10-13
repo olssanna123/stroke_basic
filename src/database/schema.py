@@ -23,7 +23,7 @@ def create_tables(config):
                 )
             """)
         case Variable.SENSITIVITY:
-                        cursor.execute("""
+            cursor.execute("""
                 CREATE TABLE IF NOT EXISTS iterations (
                     id INTEGER PRIMARY KEY,
                     iteration INTEGER,

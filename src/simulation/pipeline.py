@@ -12,6 +12,7 @@ from src.models.patient import Patient
 from src.models.triage_result import TriageResult
 from src.models.metrics_result import MetricsResult
 from src.models.time_status import TimeStatus
+from src.utils.random_generator import model
 
 def run_single_iteration(config, array):
 
@@ -53,9 +54,13 @@ def run_single_iteration(config, array):
 
       return results
     case Variable.SENSITIVITY:
+      print("Running sensitivity analysis...")
+
       metrics_results = metrics_none(config, point, triage_results.chosen_emergency_hospital)
+      print(f"Metrics results: {metrics_results}")
 
       sensitivity = model(10)
+      print(f"Sensitivity: {sensitivity}")
 
       match config.sensitivity:
         case 90:
@@ -94,7 +99,7 @@ def run_single_iteration(config, array):
         variable=config.variable,
         time=calc_time
       )
-
+      print(f"Results: {results}")
 
     case Variable.SPECIFICITY:
       metrics_results = metrics_none(config, point, triage_results.chosen_emergency_hospital)
