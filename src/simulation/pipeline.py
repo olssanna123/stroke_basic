@@ -122,8 +122,12 @@ def run_single_iteration(config, array):
         status = "saved"
         print("Patient triaged to SU, no saved time.")
       elif percentage:
-        calc_time = (metrics_results.patient_to_academic_hospital - metrics_results.patient_to_emergency_hospital)
-        status = "lost"
+        if metrics_results.patient_to_emergency_hospital < metrics_results.patient_to_academic_hospital:
+          calc_time = (metrics_results.patient_to_academic_hospital - metrics_results.patient_to_emergency_hospital)
+          status = "lost"
+        else:
+          calc_time = 0
+          status = "lost"
         print("Trombektomi falsely identified, calculating lost time.")     
       else:
         calc_time = (

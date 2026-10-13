@@ -9,19 +9,19 @@ from src.utils.plot import plot_time_vs_id
 def main(): 
     print("Hello world!")
     # Initialize configuration, tables and sampling array
-    #config = Config()          
-    #create_tables(config)      
-    #array = initialize_array() 
+    config = Config()          
+    create_tables(config)      
+    array = initialize_array() 
 
     # Kör simuleringen
-    #run_loop(config, array)
+    run_loop(config, array)
 
     # Kolla resultat
     #rows = get_all_iterations()
     #print(rows)
 
 #    table_info()
-    plot_time_vs_id()
+    #plot_time_vs_id()
 
 if __name__ == "__main__":
     main()
