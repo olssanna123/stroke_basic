@@ -25,7 +25,7 @@ def insert_iteration(config, iteration, results):
         VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)
     """, (iteration, results.latitude, results.longitude, results.municipality, results.emergency_hospital, results.triage_rule, results.patient_to_emergency_hospital, results.emergency_hospital_to_academic_hospital, results.patient_to_academic_hospital, results.variable.value, results.time))
         case Variable.SENSITIVITY:
-                        cursor.execute("""
+            cursor.execute("""
                 INSERT INTO iterations (
                     iteration,
                     latitude,
