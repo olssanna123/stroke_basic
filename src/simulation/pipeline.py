@@ -120,24 +120,27 @@ def run_single_iteration(config, array):
       if triage_results.chosen_emergency_hospital.name == "Sahlgrenska Universitetssjukhuset":
         calc_time = 0
         status = "saved"
-        print("Patient triaged to SU, no saved time.")
+        print("Patient triaged directlyto SU.")
       elif percentage:
+        print("Patient to emergency hospital:",
+          metrics_results.patient_to_emergency_hospital)
+
+        print("Patient to academic hospital:",
+          metrics_results.patient_to_academic_hospital)
+
         if metrics_results.patient_to_emergency_hospital < metrics_results.patient_to_academic_hospital:
-          calc_time = (metrics_results.patient_to_academic_hospital - metrics_results.patient_to_emergency_hospital)
+          calc_time = (
+            metrics_results.patient_to_academic_hospital
+            - metrics_results.patient_to_emergency_hospital
+          )
           status = "lost"
         else:
           calc_time = 0
           status = "lost"
-        print("Trombektomi falsely identified, calculating lost time.")     
       else:
-        calc_time = (
-            metrics_results.patient_to_emergency_hospital
-          + metrics_results.emergency_hospital_to_academic_hospital
-          + config.akut_treatment_time * 60
-          - metrics_results.patient_to_academic_hospital
-        )
-        status = "saved"
-        print("Trombektomi correctly identified, no lost time.")
+          calc_time = 0
+          status = "saved"
+          print("Trombektomi correctly identified.")
 
       results = Result(
         latitude=point[0],
