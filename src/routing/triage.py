@@ -32,8 +32,11 @@ def triage_patient(config, point):
     time_to_sahl1 = travel_times[0][1] + get_route_time(travel_times[0][0].coord(), su)
     time_to_sahl2 = travel_times[1][1] + get_route_time(travel_times[1][0].coord(), su)
 
+
+    time_difference = travel_times[1][1] - travel_times[0][1]
+
     if time_to_sahl2 < time_to_sahl1:
-        if travel_times[1][1] < config.comparison_threshold_minutes * 60:
+        if time_difference < config.comparison_threshold_minutes * 60:
             res = TriageResult(
                 chosen_emergency_hospital=travel_times[1][0],
                 triage_rule="Shorter total time to Sahlgrenska and less than 15 minutes longer than the closest hospital"
