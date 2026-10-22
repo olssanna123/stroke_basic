@@ -19,8 +19,8 @@ def metrics_none(config, point, hospital):
         if y.name == hospital.name:
             hospital_coordinates = y.coord()
 
-    metrics = get_all_route_times(point, su, hospital_coordinates)
+    metrics = get_all_route_times(point, hospital_coordinates, su)
 
-    build_routes(point, hospital_coordinates, su)
+    build_routes(point, hospital_coordinates,   su)
 
     return metrics
