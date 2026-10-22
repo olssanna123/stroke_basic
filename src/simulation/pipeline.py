@@ -52,6 +52,9 @@ def run_single_iteration(config, array):
         status="saved"
       )
 
+      with open("results.txt", "a") as f:
+        f.write(results.__str__() + "\n")
+
       return results
     case Variable.SENSITIVITY:
       print("Running sensitivity analysis...")
@@ -98,13 +101,16 @@ def run_single_iteration(config, array):
         time=calc_time,
         status="saved"
       )
+      with open("results.txt", "a") as f:
+        f.write(results.__str__() + "\n")
       print(f"Results: {results}")
       return results
     case Variable.SPECIFICITY:
       print("Running specificity analysis...")
 
       metrics_results = metrics_none(config, point, triage_results.chosen_emergency_hospital)
-      
+      print(f"Metrics results: {metrics_results}")
+
       specificity = model(10)
 
       match config.specificity:
@@ -120,7 +126,7 @@ def run_single_iteration(config, array):
       if triage_results.chosen_emergency_hospital.name == "Sahlgrenska Universitetssjukhuset":
         calc_time = 0
         status = "saved"
-        print("Patient triaged directlyto SU.")
+        print("Patient triaged directly to SU.")
       elif percentage:
         print("Patient to emergency hospital:",
           metrics_results.patient_to_emergency_hospital)
@@ -128,19 +134,13 @@ def run_single_iteration(config, array):
         print("Patient to academic hospital:",
           metrics_results.patient_to_academic_hospital)
 
-        if metrics_results.patient_to_emergency_hospital < metrics_results.patient_to_academic_hospital:
-          calc_time = (
-            metrics_results.patient_to_academic_hospital
-            - metrics_results.patient_to_emergency_hospital
-          )
-          status = "lost"
-        else:
-          calc_time = 0
-          status = "lost"
+        calc_time = metrics_results.patient_to_academic_hospital - metrics_results.patient_to_emergency_hospital
+        print("FELAKTIGT IDENTIFIERAD TROMEKTOMI!!!!!!!!!!!!!!!!!, beräknar förlorad tid", calc_time)
+        status = "lost"
       else:
-          calc_time = 0
-          status = "saved"
-          print("Trombektomi correctly identified.")
+        calc_time = 0
+        status = "saved"
+        print("Trombektomi correctly identified.")
 
       results = Result(
         latitude=point[0],

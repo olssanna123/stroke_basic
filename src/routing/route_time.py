@@ -14,12 +14,12 @@ def get_route_time(origin_latlon, dest_latlon):
     return route_info["duration"]
 
 def get_all_route_times(point, emergency_hospital, academic_hospital):
-    time_to_emergency = get_route_time(point, emergency_hospital)
-    time_to_academic = get_route_time(point, academic_hospital)
-    time_emergency_to_academic = get_route_time(emergency_hospital, academic_hospital)
+    patient_to_emergency_hospital = get_route_time(point, emergency_hospital)
+    patient_to_academic_hospital = get_route_time(point, academic_hospital)
+    emergency_hospital_to_academic_hospital = get_route_time(emergency_hospital, academic_hospital)
 
     return MetricsResult(
-        patient_to_emergency_hospital=time_to_emergency,
-        emergency_hospital_to_academic_hospital=time_emergency_to_academic,
-        patient_to_academic_hospital=time_to_academic
+        patient_to_emergency_hospital=patient_to_emergency_hospital,
+        emergency_hospital_to_academic_hospital=emergency_hospital_to_academic_hospital,
+        patient_to_academic_hospital=patient_to_academic_hospital
     )
