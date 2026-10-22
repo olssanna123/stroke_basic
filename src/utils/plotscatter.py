@@ -3,7 +3,7 @@ import sqlite3
 import matplotlib.pyplot as plt
 
 # Anslut till databasen
-conn = sqlite3.connect("output/spec50utannegn1000.db")
+conn = sqlite3.connect("output/latest.db")
 cursor = conn.cursor()
 
 # Hämta id och tid där status är 'lost'
