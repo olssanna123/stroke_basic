@@ -18,7 +18,6 @@ def run_single_iteration(config, array):
   # 1. Slumpa patient och hämta koordinater
   patient = sample_patient(array)
   point = (patient.latitude, patient.longitude)
-
  
   # 2. Triage 
   triage_results = triage_patient(config, point)
@@ -52,10 +51,8 @@ def run_single_iteration(config, array):
         status="saved"
       )
 
-      with open("results.txt", "a") as f:
-        f.write(results.__str__() + "\n")
-
       return results
+
     case Variable.SENSITIVITY:
       print("Running sensitivity analysis...")
 
@@ -101,10 +98,12 @@ def run_single_iteration(config, array):
         time=calc_time,
         status="saved"
       )
+      
       with open("results.txt", "a") as f:
         f.write(results.__str__() + "\n")
-      print(f"Results: {results}")
+
       return results
+     
     case Variable.SPECIFICITY:
       print("Running specificity analysis...")
 
@@ -155,7 +154,9 @@ def run_single_iteration(config, array):
         time=calc_time,
         status=status
       )
+
       return results
+     
     case _:
       print("Invalid variable in config. Please choose 'sensitivity', 'specificity', or 'none'.")
       return  
